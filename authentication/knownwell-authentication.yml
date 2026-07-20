@@ -1,0 +1,47 @@
+generated: '2026-07-19'
+method: searched
+source: openapi/knownwell-ci-openapi-original.json
+docs: https://api.knownwell.com/docs#authentication
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+  oauth2_flows: []
+  read_only: true
+schemes:
+- name: APIKeyHeader
+  type: apiKey
+  in: header
+  parameter: X-API-Key
+  sources:
+  - openapi/knownwell-ci-openapi-original.json
+  docs: https://api.knownwell.com/docs#authentication
+  description: 'The Knownwell API uses API key authentication via HTTP headers. Include your
+    API key in the X-API-Key header with every request. Requests without proper authentication
+    return a 401 Unauthorized error.'
+key_management:
+  issuance: 'Generate an API key from Integrations > API Connector in the Knownwell dashboard
+    (https://ci.knownwell.com/).'
+  scope: read_only
+  scope_note: 'The OpenAPI APIKeyScope enum has a single value, read_only, documented as "API
+    key access scope - ALL KEYS ARE READ-ONLY". No write, update, or delete operations are
+    permitted with an API key.'
+  key_scoped_to: customer_id
+  expiration: 'Optional. API keys may be created with expires_days; omitting it creates a
+    non-expiring key (openapi APIKeyCreate.expires_days).'
+  management_operations:
+  - create_api_key_v1_api_keys_post
+  - list_api_keys_v1_api_keys_get
+  - revoke_api_key_v1_api_keys__key_id__delete
+best_practices:
+- Never expose your API key in client-side code or public repositories
+- Store securely in environment variables or secure vaults
+- Rotate regularly — request new keys periodically
+- Use HTTPS only — all API calls must use HTTPS
+- Monitor usage — track API usage for unauthorized access
+example: |
+  curl https://api.knownwell.com/ci/v1/clients \
+    -H "X-API-Key: your_api_key_here"
+notes:
+- No OAuth 2.0 or OpenID Connect surface is published; scopes/ is therefore not applicable.
