@@ -1,22 +1,281 @@
 aid: knownwell
 name: Knownwell
-description: Knownwell is a company surfaced as a portfolio company of a16z and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: 'Knownwell is an AI-powered commercial intelligence platform for B2B professional
+  services firms, built around client retention and expansion rather than new-logo acquisition.
+  The platform ingests communications, CRM records, and enterprise data through connectors
+  to Microsoft 365, Google Workspace, Salesforce, HubSpot, Slack, Teams, and conversation
+  intelligence tools, then synthesizes an objective Knownwell score for every client
+  relationship. Teams use it to detect churn risk before a renewal conversation, surface
+  growth opportunities across a portfolio, and track relationship health over time without
+  manual data entry. Knownwell publishes a read-only public REST API at api.knownwell.com/ci/v1
+  that exposes client scores, score history, portfolios, streams, topics, priorities, notes,
+  and key people, authenticated with an X-API-Key header. Knownwell was acquired by 2X to
+  form a human-agentic GTM services company.'
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://knownwell.com/wp-content/uploads/2023/08/favicon21.svg
 url: https://raw.githubusercontent.com/api-evangelist/knownwell/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - a16z
-x-tier: stub
-x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
-apis: []
+- Commercial Intelligence
+- Client Intelligence
+- Customer Success
+- Revenue Operations
+- Professional Services
+- Artificial Intelligence
+- Analytics
+- CRM
+- Churn Risk
+apis:
+- aid: knownwell:knownwell-api-keys-api
+  name: Knownwell api-keys API
+  description: The api-keys API from Knownwell — 2 operation(s) for api-keys.
+  humanURL: https://api.knownwell.com/docs
+  baseURL: https://api.knownwell.com/ci/v1
+  tags:
+  - api-keys
+  properties:
+  - type: OpenAPI
+    url: openapi/knownwell-api-keys-api-openapi.yml
+  - type: Documentation
+    url: https://api.knownwell.com/docs
+  - type: APIReference
+    url: https://api.knownwell.com/docs#clients
+  - type: GettingStarted
+    url: https://api.knownwell.com/docs#get-started
+  - type: Postman
+    url: https://api.knownwell.com/static/knownwell-api-postman-collection.json
+- aid: knownwell:knownwell-clients-api
+  name: Knownwell clients API
+  description: The clients API from Knownwell — 14 operation(s) for clients.
+  humanURL: https://api.knownwell.com/docs
+  baseURL: https://api.knownwell.com/ci/v1
+  tags:
+  - clients
+  properties:
+  - type: OpenAPI
+    url: openapi/knownwell-clients-api-openapi.yml
+  - type: Documentation
+    url: https://api.knownwell.com/docs
+  - type: APIReference
+    url: https://api.knownwell.com/docs#clients
+  - type: GettingStarted
+    url: https://api.knownwell.com/docs#get-started
+  - type: Postman
+    url: https://api.knownwell.com/static/knownwell-api-postman-collection.json
+- aid: knownwell:knownwell-documentation-api
+  name: Knownwell documentation API
+  description: The documentation API from Knownwell — 1 operation(s) for documentation.
+  humanURL: https://api.knownwell.com/docs
+  baseURL: https://api.knownwell.com/ci/v1
+  tags:
+  - documentation
+  properties:
+  - type: OpenAPI
+    url: openapi/knownwell-documentation-api-openapi.yml
+  - type: Documentation
+    url: https://api.knownwell.com/docs
+  - type: APIReference
+    url: https://api.knownwell.com/docs#clients
+  - type: GettingStarted
+    url: https://api.knownwell.com/docs#get-started
+  - type: Postman
+    url: https://api.knownwell.com/static/knownwell-api-postman-collection.json
+- aid: knownwell:knownwell-health-api
+  name: Knownwell health API
+  description: The health API from Knownwell — 1 operation(s) for health.
+  humanURL: https://api.knownwell.com/docs
+  baseURL: https://api.knownwell.com/ci/v1
+  tags:
+  - health
+  properties:
+  - type: OpenAPI
+    url: openapi/knownwell-health-api-openapi.yml
+  - type: Documentation
+    url: https://api.knownwell.com/docs
+  - type: APIReference
+    url: https://api.knownwell.com/docs#clients
+  - type: GettingStarted
+    url: https://api.knownwell.com/docs#get-started
+  - type: Postman
+    url: https://api.knownwell.com/static/knownwell-api-postman-collection.json
+- aid: knownwell:knownwell-portfolios-api
+  name: Knownwell portfolios API
+  description: The portfolios API from Knownwell — 2 operation(s) for portfolios.
+  humanURL: https://api.knownwell.com/docs
+  baseURL: https://api.knownwell.com/ci/v1
+  tags:
+  - portfolios
+  properties:
+  - type: OpenAPI
+    url: openapi/knownwell-portfolios-api-openapi.yml
+  - type: Documentation
+    url: https://api.knownwell.com/docs
+  - type: APIReference
+    url: https://api.knownwell.com/docs#clients
+  - type: GettingStarted
+    url: https://api.knownwell.com/docs#get-started
+  - type: Postman
+    url: https://api.knownwell.com/static/knownwell-api-postman-collection.json
+- aid: knownwell:knownwell-root-api
+  name: Knownwell root API
+  description: The root API from Knownwell — 1 operation(s) for root.
+  humanURL: https://api.knownwell.com/docs
+  baseURL: https://api.knownwell.com/ci/v1
+  tags:
+  - root
+  properties:
+  - type: OpenAPI
+    url: openapi/knownwell-root-api-openapi.yml
+  - type: Documentation
+    url: https://api.knownwell.com/docs
+  - type: APIReference
+    url: https://api.knownwell.com/docs#clients
+  - type: GettingStarted
+    url: https://api.knownwell.com/docs#get-started
+  - type: Postman
+    url: https://api.knownwell.com/static/knownwell-api-postman-collection.json
+- aid: knownwell:knownwell-status-api
+  name: Knownwell status API
+  description: The status API from Knownwell — 1 operation(s) for status.
+  humanURL: https://api.knownwell.com/docs
+  baseURL: https://api.knownwell.com/ci/v1
+  tags:
+  - status
+  properties:
+  - type: OpenAPI
+    url: openapi/knownwell-status-api-openapi.yml
+  - type: Documentation
+    url: https://api.knownwell.com/docs
+  - type: APIReference
+    url: https://api.knownwell.com/docs#clients
+  - type: GettingStarted
+    url: https://api.knownwell.com/docs#get-started
+  - type: Postman
+    url: https://api.knownwell.com/static/knownwell-api-postman-collection.json
+- aid: knownwell:knownwell-streams-api
+  name: Knownwell streams API
+  description: The streams API from Knownwell — 1 operation(s) for streams.
+  humanURL: https://api.knownwell.com/docs
+  baseURL: https://api.knownwell.com/ci/v1
+  tags:
+  - streams
+  properties:
+  - type: OpenAPI
+    url: openapi/knownwell-streams-api-openapi.yml
+  - type: Documentation
+    url: https://api.knownwell.com/docs
+  - type: APIReference
+    url: https://api.knownwell.com/docs#clients
+  - type: GettingStarted
+    url: https://api.knownwell.com/docs#get-started
+  - type: Postman
+    url: https://api.knownwell.com/static/knownwell-api-postman-collection.json
+- aid: knownwell:knownwell-topics-api
+  name: Knownwell topics API
+  description: The topics API from Knownwell — 1 operation(s) for topics.
+  humanURL: https://api.knownwell.com/docs
+  baseURL: https://api.knownwell.com/ci/v1
+  tags:
+  - topics
+  properties:
+  - type: OpenAPI
+    url: openapi/knownwell-topics-api-openapi.yml
+  - type: Documentation
+    url: https://api.knownwell.com/docs
+  - type: APIReference
+    url: https://api.knownwell.com/docs#clients
+  - type: GettingStarted
+    url: https://api.knownwell.com/docs#get-started
+  - type: Postman
+    url: https://api.knownwell.com/static/knownwell-api-postman-collection.json
+common:
+- type: AgenticAccess
+  url: agentic-access/knownwell-agentic-access.yml
+- type: DomainSecurity
+  url: security/knownwell-domain-security.yml
+- type: Website
+  url: https://knownwell.com/
+- type: DeveloperPortal
+  url: https://api.knownwell.com/docs
+- type: Documentation
+  url: https://api.knownwell.com/docs
+- type: APIReference
+  url: https://api.knownwell.com/docs#introduction
+- type: GettingStarted
+  url: https://api.knownwell.com/docs#get-started
+- type: Postman
+  url: https://api.knownwell.com/static/knownwell-api-postman-collection.json
+- type: Blog
+  url: https://knownwell.com/insights/
+- type: Support
+  url: https://knownwell.com/contact/
+- type: Pricing
+  url: https://knownwell.com/pricing/
+- type: SignUp
+  url: https://knownwell.com/experience-the-knownwell-platform-checkout/
+- type: Login
+  url: https://ci.knownwell.com/
+- type: TermsOfService
+  url: https://knownwell.com/terms-of-service/
+- type: PrivacyPolicy
+  url: https://knownwell.com/privacy-policy/
+- type: StatusPage
+  url: https://status.knownwell.com
+- type: TrustCenter
+  url: security/knownwell-trust-center.yml
+- type: Compliance
+  url: https://knownwell.com/security/
+- type: Security
+  url: https://knownwell.com/security/
+- type: VulnerabilityDisclosure
+  url: security/knownwell-vulnerability-disclosure.yml
+- type: LLMsTxt
+  url: llms/knownwell-llms.txt
+- type: Authentication
+  url: authentication/knownwell-authentication.yml
+- type: Conventions
+  url: conventions/knownwell-conventions.yml
+- type: RateLimits
+  url: rate-limits/knownwell-rate-limits.yml
+- type: ErrorCatalog
+  url: errors/knownwell-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/knownwell-lifecycle.yml
+- type: Conformance
+  url: conformance/knownwell-conformance.yml
+- type: DataModel
+  url: data-model/knownwell-data-model.yml
+- type: Examples
+  url: examples/knownwell-code-examples.yml
+- type: MCPServer
+  url: mcp/knownwell-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
