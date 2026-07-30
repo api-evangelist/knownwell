@@ -1,0 +1,44 @@
+generated: '2026-07-19'
+method: searched
+source: https://api.knownwell.com/docs
+versioning:
+  scheme: uri-path
+  current: v1
+  base_url: https://api.knownwell.com/ci/v1
+  spec_version: v1
+  evidence: 'OpenAPI info.version is "v1"; every path is prefixed /v1/ and the documented base
+    URL is https://api.knownwell.com/ci/v1.'
+deprecation:
+  policy_url: null
+  sunset_header: null
+  deprecation_header: null
+  note: 'Knownwell publishes no deprecation or sunset policy, and no operation in the OpenAPI
+    is marked deprecated: true. No Deprecation pointer is wired in apis.yml.'
+deprecated_operations: []
+sla:
+  url: null
+  uptime_target: null
+status_page: https://status.knownwell.com
+status_page_platform: UptimeRobot public status page (redirects to stats.uptimerobot.com)
+health_endpoints:
+- path: /health
+  operationId: health_check_health_get
+  description: 'Returns {"status":"healthy","version":"v1","environment":"production"}'
+- path: /status
+  operationId: status_page_status_get
+  description: In-API status page endpoint
+data_retention:
+  historical_data: Historical data is available for up to 365 days
+  score_refresh: Client scores are updated daily at 00:00 UTC
+  portfolio_health: Portfolio health metrics are calculated in real-time
+  account_closure: Customer data deleted upon account closure (https://knownwell.com/security/)
+key_lifecycle:
+  expiration: 'API keys may be created with an optional expires_days; omitting it creates a
+    non-expiring key.'
+  revocation: revoke_api_key_v1_api_keys__key_id__delete
+corporate:
+  note: 'Knownwell was acquired by 2X to form a human-agentic GTM services company.'
+  source: https://knownwell.com/news/knownwell-2x-announcement/
+changelog:
+  url: null
+  note: No dated API changelog or release-notes page was found; no ChangeLog pointer is wired.

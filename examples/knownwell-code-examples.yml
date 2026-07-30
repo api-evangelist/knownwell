@@ -1,0 +1,62 @@
+generated: '2026-07-19'
+method: searched
+source: https://api.knownwell.com/docs#examples
+api: Knownwell API
+base_url: https://api.knownwell.com/ci/v1
+description: 'Request examples published verbatim in the Knownwell API reference (Quick Start
+  and Code Examples sections). API key values are the documentation placeholders as published;
+  no real credentials are included.'
+examples:
+- name: First request
+  section: Quick Start
+  operationId: list_clients_v1_clients_get
+  language: shell
+  code: |
+    curl https://api.knownwell.com/ci/v1/clients \
+      -H "X-API-Key: your_api_key_here"
+- name: Find high-risk clients
+  section: Code Examples
+  operationId: get_clients_by_risk_v1_clients_by_risk__risk_level__get
+  language: shell
+  code: |
+    curl https://api.knownwell.com/ci/v1/clients/by-risk/high_risk \
+      -H "X-API-Key: YOUR_API_KEY"
+- name: Monitor declining clients
+  section: Code Examples
+  operationId: get_trending_clients_v1_clients_trending_get
+  language: shell
+  code: |
+    curl https://api.knownwell.com/ci/v1/clients/trending?direction=declining \
+      -H "X-API-Key: YOUR_API_KEY"
+- name: Search clients by name
+  section: Code Examples
+  operationId: search_clients_v1_clients_search_get
+  language: shell
+  code: |
+    curl "https://api.knownwell.com/ci/v1/clients/search?query=acme" \
+      -H "X-API-Key: YOUR_API_KEY"
+- name: Error response format
+  section: Errors
+  language: json
+  kind: response
+  code: |
+    {
+      "error": "Validation error",
+      "detail": "API key is required",
+      "status_code": 401
+    }
+- name: Rate limit headers
+  section: Rate Limits
+  language: http
+  kind: response-headers
+  code: |
+    X-RateLimit-Limit: 100
+    X-RateLimit-Remaining: 95
+    X-RateLimit-Reset: 1642608000
+interactive:
+  note: 'The reference embeds a "Try It" console on each endpoint that accepts an API key and
+    issues the live request from the browser.'
+postman:
+  collection: https://api.knownwell.com/static/knownwell-api-postman-collection.json
+  note: 'Pre-configured with all endpoints, authentication, and examples. Variables: base_url,
+    api_key, customer_id, client_id.'

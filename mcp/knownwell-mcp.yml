@@ -1,0 +1,89 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/knownwell-ci-openapi-original.json
+status: candidate
+description: >-
+  Knownwell publishes no hosted or remote MCP server (no MCP reference in the developer
+  docs, no /.well-known/ai-plugin.json, no npm or registry listing). This is a candidate
+  server derived one-to-one from the published OpenAPI operations, offered as a starting
+  point. Every tool below maps to a real operationId in the harvested spec. Because the
+  Knownwell API is strictly read-only, the entire tool surface is read-only and safe to
+  expose to an agent under a single X-API-Key.
+server:
+  name: knownwell
+  transport: http
+  url: null
+  upstream: https://api.knownwell.com/ci/v1
+auth:
+  type: apiKey
+  header: X-API-Key
+  scope: read_only
+tools:
+- name: list_clients
+  description: List clients in the portfolio with limit/offset pagination.
+  source_operation: openapi/knownwell-ci-openapi-original.json#list_clients_v1_clients_get
+- name: get_client
+  description: Get one client by id, including spotlight summary and topics.
+  source_operation: openapi/knownwell-ci-openapi-original.json#get_client_v1_clients__client_id__get
+- name: search_clients
+  description: Search clients by name.
+  source_operation: openapi/knownwell-ci-openapi-original.json#search_clients_v1_clients_search_get
+- name: get_clients_by_risk
+  description: 'List clients at a given risk level: high_risk, medium_risk, low_risk, or
+    on_track.'
+  source_operation: openapi/knownwell-ci-openapi-original.json#get_clients_by_risk_v1_clients_by_risk__risk_level__get
+- name: get_trending_clients
+  description: List clients whose Knownwell score is improving or declining.
+  source_operation: openapi/knownwell-ci-openapi-original.json#get_trending_clients_v1_clients_trending_get
+- name: get_client_history
+  description: Retrieve a client's score history (up to 365 days).
+  source_operation: openapi/knownwell-ci-openapi-original.json#get_client_history_v1_clients__client_id__history_get
+- name: get_client_priorities
+  description: Retrieve the action items and priorities for a client.
+  source_operation: openapi/knownwell-ci-openapi-original.json#get_client_priorities_v1_clients__client_id__priorities_get
+- name: get_client_notes
+  description: Retrieve notes and observations recorded against a client.
+  source_operation: openapi/knownwell-ci-openapi-original.json#get_client_notes_v1_clients__client_id__notes_get
+- name: get_client_key_people
+  description: Retrieve the key people and contacts on a client relationship.
+  source_operation: openapi/knownwell-ci-openapi-original.json#get_client_key_people_v1_clients__client_id__key_people_get
+- name: get_portfolio_health
+  description: Get aggregate health metrics across the client portfolio.
+  source_operation: openapi/knownwell-ci-openapi-original.json#get_portfolio_health_v1_clients_portfolio_health_get
+- name: get_statistics_overview
+  description: Get overview statistics for the account's clients.
+  source_operation: openapi/knownwell-ci-openapi-original.json#get_statistics_v1_clients_statistics_overview_get
+- name: export_clients_csv
+  description: Export the client list as CSV.
+  source_operation: openapi/knownwell-ci-openapi-original.json#export_clients_csv_v1_clients_export_csv_get
+- name: list_portfolios
+  description: List named client portfolios.
+  source_operation: openapi/knownwell-ci-openapi-original.json#list_portfolios_v1_portfolios_get
+- name: get_portfolio
+  description: Get one portfolio by id.
+  source_operation: openapi/knownwell-ci-openapi-original.json#get_portfolio_v1_portfolios__portfolio_id__get
+- name: list_all_streams
+  description: List every stream across the account.
+  source_operation: openapi/knownwell-ci-openapi-original.json#list_all_streams_v1_streams_get
+- name: list_client_streams
+  description: List the streams beneath one client.
+  source_operation: openapi/knownwell-ci-openapi-original.json#list_client_streams_v1_clients__client_id__streams_get
+- name: get_stream
+  description: Get one stream on a client, with score, state, and goals.
+  source_operation: openapi/knownwell-ci-openapi-original.json#get_stream_v1_clients__client_id__streams__stream_id__get
+- name: list_topics
+  description: List the fifteen scoring topics and their categories.
+  source_operation: openapi/knownwell-ci-openapi-original.json#list_topics_v1_topics_get
+- name: health_check
+  description: Check API health.
+  source_operation: openapi/knownwell-ci-openapi-original.json#health_check_health_get
+excluded_operations:
+  reason: API key lifecycle operations are deliberately not exposed as agent tools.
+  operations:
+  - create_api_key_v1_api_keys_post
+  - list_api_keys_v1_api_keys_get
+  - revoke_api_key_v1_api_keys__key_id__delete
+conventions:
+  pagination: limit/offset (default 100, max 500) — see conventions/knownwell-conventions.yml
+  rate_limits: 100/min, 5,000/hour, 50,000/day — see rate-limits/knownwell-rate-limits.yml
+  errors: '{error, detail, status_code} — see errors/knownwell-problem-types.yml'

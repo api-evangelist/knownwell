@@ -1,0 +1,45 @@
+generated: '2026-07-19'
+method: probed
+source: live HTTP probes of the Knownwell API, marketing, and app hosts
+note: 'Knownwell publishes no /.well-known/ discovery surface. Every probed document returned
+  404. Recorded as an honest negative result; no WellKnown/SecurityTxt pointer is wired in
+  apis.yml because there is nothing to point at.'
+hosts:
+- host: https://api.knownwell.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: https://knownwell.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: https://ci.knownwell.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+related:
+- 'llms.txt IS published at https://knownwell.com/llms.txt (200) — saved verbatim to llms/knownwell-llms.txt'

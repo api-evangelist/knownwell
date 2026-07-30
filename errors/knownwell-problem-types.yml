@@ -1,0 +1,76 @@
+generated: '2026-07-19'
+method: searched
+source: https://api.knownwell.com/docs#errors
+also_derived_from: openapi/knownwell-ci-openapi-original.json
+format: custom-json
+rfc9457: false
+description: 'Knownwell uses conventional HTTP response codes to indicate the success or
+  failure of an API request. Codes in the 2xx range indicate success. Codes in the 4xx range
+  indicate an error with the information provided. Codes in the 5xx range indicate an error
+  with our servers.'
+envelope:
+  fields:
+  - name: error
+    type: string
+    description: Short error label
+  - name: detail
+    type: string
+    description: Human-readable detail explaining the failure
+  - name: status_code
+    type: integer
+    description: The HTTP status code, repeated in the response body
+  example: |
+    {
+      "error": "Validation error",
+      "detail": "API key is required",
+      "status_code": 401
+    }
+validation_envelope:
+  schema: HTTPValidationError
+  source: openapi/knownwell-ci-openapi-original.json#/components/schemas/HTTPValidationError
+  description: 'Returned on 422. A detail[] array of ValidationError objects, each with loc
+    (location path), msg (message), and type (error type).'
+problems:
+- status: 400
+  title: Bad Request
+  detail: Often missing a required parameter
+  remediation: Check that all required path and query parameters are supplied.
+- status: 401
+  title: Unauthorized
+  detail: Invalid or missing API key
+  remediation: 'Send a valid key in the X-API-Key header. Generate keys from Integrations >
+    API Connector in the Knownwell dashboard.'
+- status: 403
+  title: Forbidden
+  detail: You don't have permission to access this resource
+  remediation: 'Confirm the API key is scoped to the customer_id that owns the requested
+    resource, and that the key has not been revoked.'
+- status: 404
+  title: Not Found
+  detail: The requested resource doesn't exist
+  remediation: Verify the client_id, portfolio_id, or stream_id path parameter.
+- status: 422
+  title: Unprocessable Entity
+  detail: Validation error
+  schema: HTTPValidationError
+  remediation: 'Read detail[].loc to find the offending parameter. Common causes: limit above
+    the 500 maximum, negative offset, or an unrecognized risk_level path value (allowed:
+    high_risk, medium_risk, low_risk, on_track).'
+  source_operations:
+  - get_client_v1_clients__client_id__get
+  - get_clients_by_risk_v1_clients_by_risk__risk_level__get
+  - search_clients_v1_clients_search_get
+  - list_clients_v1_clients_get
+  note: 22 of 25 operations declare a 422 response in the OpenAPI.
+- status: 429
+  title: Too Many Requests
+  detail: Rate limit exceeded
+  remediation: 'Back off and retry after X-RateLimit-Reset. Limits are 100/minute, 5,000/hour,
+    50,000/day. See rate-limits/knownwell-rate-limits.yml.'
+- status: 500
+  title: Internal Server Error
+  detail: Something went wrong on our end
+  remediation: Retry with backoff; if it persists, contact technical support.
+related:
+  conventions: conventions/knownwell-conventions.yml
+  rate_limits: rate-limits/knownwell-rate-limits.yml

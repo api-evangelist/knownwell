@@ -1,0 +1,30 @@
+{
+  "provider": "knownwell",
+  "sources": [
+    "knownwell-api-keys-api-openapi.yml",
+    "knownwell-clients-api-openapi.yml",
+    "knownwell-documentation-api-openapi.yml",
+    "knownwell-health-api-openapi.yml",
+    "knownwell-portfolios-api-openapi.yml",
+    "knownwell-root-api-openapi.yml",
+    "knownwell-status-api-openapi.yml",
+    "knownwell-streams-api-openapi.yml",
+    "knownwell-topics-api-openapi.yml"
+  ],
+  "outputs": [
+    "knownwell-api-keys-api-openapi.yml",
+    "knownwell-clients-api-openapi.yml",
+    "knownwell-documentation-api-openapi.yml",
+    "knownwell-health-api-openapi.yml",
+    "knownwell-portfolios-api-openapi.yml",
+    "knownwell-root-api-openapi.yml",
+    "knownwell-status-api-openapi.yml",
+    "knownwell-streams-api-openapi.yml",
+    "knownwell-topics-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

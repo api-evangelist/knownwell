@@ -1,0 +1,184 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/knownwell-ci-openapi-original.json
+api: Knownwell API
+description: 'Entity-relationship graph derived from the Knownwell OpenAPI component schemas
+  and the id-reference fields they carry. The domain centres on a Customer (tenant) whose
+  Clients each carry a Knownwell score; Clients are grouped into Portfolios and decomposed
+  into Streams, and are annotated with Topics, Priorities, Notes, and Key People.'
+entities:
+- name: Client
+  schemas:
+  - ClientResponse
+  - ClientDetailResponse
+  key: id
+  tenant_field: customerId
+  fields:
+  - id
+  - customerId
+  - name
+  - score
+  - scoreSource
+  - scoreChanges
+  - lastContactDate
+  - lastUpdatedAt
+  - hasInsufficientData
+  - metadata
+  - extraColumns
+  - historicalData
+  - archived
+  detail_only_fields:
+  - spotlightSummary
+  - topics
+  operations:
+  - list_clients_v1_clients_get
+  - get_client_v1_clients__client_id__get
+  - search_clients_v1_clients_search_get
+  - get_clients_by_risk_v1_clients_by_risk__risk_level__get
+  - get_trending_clients_v1_clients_trending_get
+  - get_client_history_v1_clients__client_id__history_get
+  - export_clients_csv_v1_clients_export_csv_get
+  relationships:
+  - type: belongs_to
+    target: Customer
+    via: customerId
+  - type: has_one
+    target: ClientMetadata
+    via: metadata
+  - type: has_one
+    target: ScoreChanges
+    via: scoreChanges
+  - type: has_many
+    target: Stream
+    via: parentClientId
+  - type: has_many
+    target: Topic
+    via: topics
+- name: Portfolio
+  schemas:
+  - PortfolioResponse
+  - PortfolioDetailResponse
+  key: id
+  tenant_field: customerId
+  fields:
+  - id
+  - name
+  - color
+  - description
+  - customerId
+  - clientCount
+  - userIds
+  - isSystem
+  - createdAt
+  - updatedAt
+  operations:
+  - list_portfolios_v1_portfolios_get
+  - get_portfolio_v1_portfolios__portfolio_id__get
+  - get_portfolio_health_v1_clients_portfolio_health_get
+  relationships:
+  - type: belongs_to
+    target: Customer
+    via: customerId
+  - type: has_many
+    target: Client
+    via: clientCount
+  - type: has_many
+    target: PortfolioUser
+    via: userIds
+- name: Stream
+  schemas:
+  - StreamResponse
+  - StreamDetailResponse
+  key: id
+  tenant_field: customerId
+  fields:
+  - id
+  - name
+  - customerId
+  - parentClientId
+  - parentClientName
+  - score
+  - streamState
+  - goals
+  - hasInsufficientData
+  - historicalData
+  - scoreChanges
+  operations:
+  - list_all_streams_v1_streams_get
+  - list_client_streams_v1_clients__client_id__streams_get
+  - get_stream_v1_clients__client_id__streams__stream_id__get
+  relationships:
+  - type: belongs_to
+    target: Client
+    via: parentClientId
+  - type: belongs_to
+    target: Customer
+    via: customerId
+- name: Topic
+  key: id
+  fields:
+  - id
+  - displayName
+  - description
+  - category
+  operations:
+  - list_topics_v1_topics_get
+  note: 'Fifteen topics grouped into categories (SQP, RS, CA) per the topics endpoint
+    documentation; topics are the dimensions a Knownwell score is built from.'
+  relationships:
+  - type: has_many
+    target: Client
+    via: topics
+- name: APIKey
+  schemas:
+  - APIKeyCreate
+  - APIKeyResponse
+  key: key_id
+  tenant_field: customer_id
+  fields:
+  - customer_id
+  - name
+  - description
+  - scope
+  - expires_days
+  operations:
+  - create_api_key_v1_api_keys_post
+  - list_api_keys_v1_api_keys_get
+  - revoke_api_key_v1_api_keys__key_id__delete
+  relationships:
+  - type: belongs_to
+    target: Customer
+    via: customer_id
+- name: PortfolioUser
+  schemas:
+  - PortfolioUser
+  relationships:
+  - type: belongs_to
+    target: Portfolio
+    via: userIds
+value_objects:
+- name: ScoreChange
+  fields_note: A single delta in a client or stream score
+- name: ScoreChanges
+  relationships:
+  - type: has_many
+    target: ScoreChange
+- name: ClientMetadata
+- name: RiskLevel
+  enum:
+  - high_risk
+  - medium_risk
+  - low_risk
+  - on_track
+- name: TrendDirection
+- name: APIKeyScope
+  enum:
+  - read_only
+- name: ValidationError
+- name: HTTPValidationError
+tenancy:
+  root: Customer
+  note: 'Customer is not returned as a first-class resource; it is the tenant identifier
+    (customerId / customer_id) that every Client, Portfolio, Stream, and APIKey belongs to,
+    and the value an API key is scoped to.'
+render: null

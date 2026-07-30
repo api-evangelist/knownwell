@@ -1,0 +1,104 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Knownwell API
+  version: 1.0.0
+extends: openapi/knownwell-ci-openapi-original.json
+x-generated: '2026-07-19'
+x-method: generated
+x-source: >-
+  Enhancements derived from https://api.knownwell.com/docs and the artifacts in this repo.
+  The harvested spec at openapi/knownwell-ci-openapi-original.json is never mutated.
+actions:
+- target: $
+  description: >-
+    The harvested spec declares no servers[]; the documented production base URL is
+    https://api.knownwell.com/ci/v1.
+  update:
+    servers:
+    - url: https://api.knownwell.com/ci
+      description: Production
+- target: $.info
+  description: Add contact, licensing-free terms, external docs, and API Evangelist metadata.
+  update:
+    contact:
+      name: Knownwell Technical Support
+      email: support@knownwell.com
+      url: https://api.knownwell.com/docs
+    termsOfService: https://knownwell.com/terms-of-service/
+    x-apievangelist-slug: knownwell
+    x-apievangelist-read-only: true
+    x-logo:
+      url: https://knownwell.com/wp-content/uploads/2023/08/favicon21.svg
+- target: $
+  description: Link the human-readable API reference.
+  update:
+    externalDocs:
+      description: Knownwell API Reference
+      url: https://api.knownwell.com/docs
+- target: $
+  description: Describe the tag set the spec uses but does not document.
+  update:
+    tags:
+    - name: clients
+      description: Client records, Knownwell scores, score history, risk and trend filters.
+      externalDocs:
+        url: https://api.knownwell.com/docs#clients
+    - name: portfolios
+      description: Named groupings of clients, with health rollups.
+      externalDocs:
+        url: https://api.knownwell.com/docs#portfolios
+    - name: streams
+      description: Sub-relationships beneath a client, each with its own score and goals.
+      externalDocs:
+        url: https://api.knownwell.com/docs#streams
+    - name: topics
+      description: The fifteen scoring dimensions, grouped into categories.
+      externalDocs:
+        url: https://api.knownwell.com/docs#topics
+    - name: api-keys
+      description: Read-only API key issuance, listing, and revocation.
+    - name: health
+      description: Service health probe.
+- target: $.components.securitySchemes.APIKeyHeader
+  description: Document how keys are obtained and that all keys are read-only.
+  update:
+    description: >-
+      API key authentication. Send your key in the X-API-Key header on every request.
+      Generate a key from Integrations > API Connector in the Knownwell dashboard. All API
+      keys are read-only; no write, update, or delete operations are permitted. Requests
+      without a valid key return 401.
+- target: $
+  description: >-
+    Apply the API key requirement at the document level so tooling treats every operation as
+    authenticated by default.
+  update:
+    security:
+    - APIKeyHeader: []
+- target: $.info
+  description: >-
+    Record the published rate limits and error envelope, which the spec omits, so agent and
+    SDK generators can honour them.
+  update:
+    x-rate-limits:
+      per_minute: 100
+      per_hour: 5000
+      per_day: 50000
+      headers:
+      - X-RateLimit-Limit
+      - X-RateLimit-Remaining
+      - X-RateLimit-Reset
+      exceeded_status: 429
+      source: https://api.knownwell.com/docs#rate-limits
+    x-error-envelope:
+      fields:
+      - error
+      - detail
+      - status_code
+      source: https://api.knownwell.com/docs#errors
+    x-pagination:
+      style: limit-offset
+      params:
+      - limit
+      - offset
+      default_limit: 100
+      max_limit: 500

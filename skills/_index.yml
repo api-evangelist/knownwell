@@ -1,0 +1,46 @@
+generated: '2026-07-19'
+method: generated
+source: openapi/knownwell-ci-openapi-original.json + https://api.knownwell.com/docs
+api: Knownwell API
+note: >-
+  Knownwell publishes no AGENTS.md or provider-authored agent skills. These are generated from
+  the published OpenAPI and API reference; every operationId referenced was verified verbatim
+  against openapi/knownwell-ci-openapi-original.json.
+skills:
+- file: knownwell-triage-at-risk-clients.md
+  name: Triage at-risk Knownwell clients
+  description: Find at-risk and declining clients, pull the evidence behind each score, and
+    return a ranked triage list with contacts.
+  api: openapi/knownwell-ci-openapi-original.json
+  operations:
+  - get_clients_by_risk_v1_clients_by_risk__risk_level__get
+  - get_trending_clients_v1_clients_trending_get
+  - get_client_v1_clients__client_id__get
+  - get_client_history_v1_clients__client_id__history_get
+  - get_client_priorities_v1_clients__client_id__priorities_get
+  - get_client_key_people_v1_clients__client_id__key_people_get
+- file: knownwell-portfolio-health-review.md
+  name: Run a Knownwell portfolio health review
+  description: Assemble portfolio-level health, overview statistics, per-portfolio rollups, and
+    the client score distribution for a recurring review.
+  api: openapi/knownwell-ci-openapi-original.json
+  operations:
+  - get_portfolio_health_v1_clients_portfolio_health_get
+  - get_statistics_v1_clients_statistics_overview_get
+  - list_portfolios_v1_portfolios_get
+  - get_portfolio_v1_portfolios__portfolio_id__get
+  - list_clients_v1_clients_get
+  - list_topics_v1_topics_get
+  - export_clients_csv_v1_clients_export_csv_get
+- file: knownwell-stream-drilldown.md
+  name: Drill into a Knownwell client's streams
+  description: Decompose a client relationship into its streams and attribute score movement to
+    the stream responsible.
+  api: openapi/knownwell-ci-openapi-original.json
+  operations:
+  - search_clients_v1_clients_search_get
+  - get_client_v1_clients__client_id__get
+  - list_client_streams_v1_clients__client_id__streams_get
+  - get_stream_v1_clients__client_id__streams__stream_id__get
+  - list_all_streams_v1_streams_get
+  - get_client_notes_v1_clients__client_id__notes_get

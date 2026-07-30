@@ -1,0 +1,279 @@
+generated: '2026-07-19'
+method: generated
+source: openapi/knownwell-ci-openapi-original.json
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 25
+  by_action_class:
+    connected: 23
+    acting: 2
+  by_consequence:
+    read: 23
+    write: 1
+    safety-critical: 1
+  human_in_the_loop_required: 1
+operations:
+- path: /v1/clients
+  method: get
+  operationId: list_clients_v1_clients_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/clients/portfolio-health
+  method: get
+  operationId: get_portfolio_health_v1_clients_portfolio_health_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/clients/trending
+  method: get
+  operationId: get_trending_clients_v1_clients_trending_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/clients/search
+  method: get
+  operationId: search_clients_v1_clients_search_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/clients/statistics/overview
+  method: get
+  operationId: get_statistics_v1_clients_statistics_overview_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/clients/export/csv
+  method: get
+  operationId: export_clients_csv_v1_clients_export_csv_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/clients/by-risk/{risk_level}
+  method: get
+  operationId: get_clients_by_risk_v1_clients_by_risk__risk_level__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/clients/{client_id}
+  method: get
+  operationId: get_client_v1_clients__client_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/clients/{client_id}/history
+  method: get
+  operationId: get_client_history_v1_clients__client_id__history_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/clients/{client_id}/priorities
+  method: get
+  operationId: get_client_priorities_v1_clients__client_id__priorities_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/clients/{client_id}/notes
+  method: get
+  operationId: get_client_notes_v1_clients__client_id__notes_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/clients/{client_id}/key-people
+  method: get
+  operationId: get_client_key_people_v1_clients__client_id__key_people_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/clients/{client_id}/streams
+  method: get
+  operationId: list_client_streams_v1_clients__client_id__streams_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/clients/{client_id}/streams/{stream_id}
+  method: get
+  operationId: get_stream_v1_clients__client_id__streams__stream_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/portfolios
+  method: get
+  operationId: list_portfolios_v1_portfolios_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/portfolios/{portfolio_id}
+  method: get
+  operationId: get_portfolio_v1_portfolios__portfolio_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/api-keys
+  method: post
+  operationId: create_api_key_v1_api_keys_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/api-keys
+  method: get
+  operationId: list_api_keys_v1_api_keys_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/api-keys/{key_id}
+  method: delete
+  operationId: revoke_api_key_v1_api_keys__key_id__delete
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /v1/topics
+  method: get
+  operationId: list_topics_v1_topics_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/streams
+  method: get
+  operationId: list_all_streams_v1_streams_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /health
+  method: get
+  operationId: health_check_health_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /
+  method: get
+  operationId: root__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /docs
+  method: get
+  operationId: documentation_docs_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /status
+  method: get
+  operationId: status_page_status_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none

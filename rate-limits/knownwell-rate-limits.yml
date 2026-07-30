@@ -1,0 +1,36 @@
+generated: '2026-07-19'
+method: searched
+source: https://api.knownwell.com/docs#rate-limits
+api: Knownwell API
+description: 'To ensure service quality for all clients, the API enforces rate limits. Every
+  API response includes rate limit headers.'
+rate_limits:
+- window: minute
+  limit_count: 100
+  unit: requests
+  description: Per minute
+- window: hour
+  limit_count: 5000
+  unit: requests
+  description: Per hour
+- window: day
+  limit_count: 50000
+  unit: requests
+  description: Per day
+headers:
+- name: X-RateLimit-Limit
+  description: The request ceiling for the current window
+  example: '100'
+- name: X-RateLimit-Remaining
+  description: Requests remaining in the current window
+  example: '95'
+- name: X-RateLimit-Reset
+  description: Unix timestamp at which the current window resets
+  example: '1642608000'
+exceeded:
+  status: 429
+  meaning: Too Many Requests - Rate limit exceeded
+guidance:
+- Monitor rate limit headers
+- Cache responses — client scores update daily, so cache for at least 1 hour
+- Use pagination — request only the data you need

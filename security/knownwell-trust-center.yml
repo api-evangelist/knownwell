@@ -1,0 +1,46 @@
+generated: '2026-07-19'
+method: searched
+source: https://knownwell.com/security/
+url: https://trustcenter.knownwell.com
+security_page: https://knownwell.com/security/
+certifications:
+- SOC 2
+- Data Privacy Framework
+certification_detail:
+- name: SOC 2
+  status: Audited annually
+- name: Data Privacy Framework
+  status: Active certification
+  scope: EU, UK, and Switzerland
+controls:
+- name: Penetration Testing
+  status: Compliant
+  cadence: Annual third-party
+- name: Continuous Monitoring
+  status: Monitored
+  cadence: Real-time controls
+resources:
+- name: Trust Center
+  url: https://trustcenter.knownwell.com
+- name: CISO Guide
+  note: Available for download from https://knownwell.com/security/
+data_handling:
+- Zero-retention AI inference — customer data is not used to train third-party models
+- PHI and PII are automatically redacted before storage
+- Customer data deleted upon account closure
+contact: infosec@knownwell.com
+evidence:
+- source: https://knownwell.com/security/
+  keywords:
+  - soc 2
+  - data privacy framework
+  - penetration testing
+  - continuous monitoring
+  - trust center
+- source: https://trustcenter.knownwell.com
+  note: 'Live and titled "Knownwell Trust Center"; body content is client-rendered, so
+    certifications above are taken from the linking security page.'
+notes:
+- 'probe-security-programs.py returned no hit (the trust center is JavaScript-rendered and
+  knownwell.com/security/ is not on the probe path list); this file was captured by direct
+  fetch of the published security page.'

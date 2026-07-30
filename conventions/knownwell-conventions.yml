@@ -1,0 +1,118 @@
+generated: '2026-07-19'
+method: searched
+source: https://api.knownwell.com/docs
+also_derived_from: openapi/knownwell-ci-openapi-original.json
+api: Knownwell API
+base_url: https://api.knownwell.com/ci/v1
+style:
+  architecture: REST
+  description: 'Resource-oriented URLs, JSON responses, standard HTTP methods, and secure API
+    key authentication. All data endpoints are read-only.'
+  media_type: application/json
+  read_only: true
+  read_only_note: 'This API is strictly read-only. All data endpoints use GET and provide read
+    access only. No write, update, or delete operations are permitted via API keys.'
+authentication:
+  style: api-key-header
+  header: X-API-Key
+  unauthenticated_status: 401
+  artifact: authentication/knownwell-authentication.yml
+  docs: https://api.knownwell.com/docs#authentication
+idempotency:
+  supported: false
+  reason: 'The public API exposes no state-changing data operations (all data endpoints are
+    GET, which is idempotent by HTTP semantics). Knownwell publishes no idempotency-key
+    header or retention window, so no Idempotency pointer is wired.'
+pagination:
+  style: limit-offset
+  params:
+  - name: limit
+    in: query
+    type: integer
+    default: 100
+    maximum: 500
+    minimum: 1
+    description: Maximum number of items to return
+  - name: offset
+    in: query
+    type: integer
+    default: 0
+    minimum: 0
+    description: Number of items to skip before starting to collect the result set
+  response_fields:
+  - total
+  docs: https://api.knownwell.com/docs#pagination
+  applies_to: List endpoints that return multiple items
+filtering:
+  supported: true
+  patterns:
+  - 'Path-segment filters: /v1/clients/by-risk/{risk_level} where risk_level is one of
+    high_risk, medium_risk, low_risk, on_track'
+  - 'Query filters: /v1/clients/trending?direction=declining'
+  - 'Search: /v1/clients/search?query=acme'
+  - 'Archive toggle: include_archived query parameter on list endpoints'
+field_expansion:
+  supported: false
+  note: 'No expand/sparse-fieldset parameters are documented. Detail endpoints (e.g.
+    get_client_v1_clients__client_id__get) return a richer ClientDetailResponse that adds
+    spotlightSummary and topics over the list-level ClientResponse.'
+metadata:
+  supported: true
+  note: 'ClientResponse carries a metadata object (ClientMetadata) and an extraColumns field
+    for customer-defined attributes.'
+request_tracing:
+  request_id_header: null
+  note: No request-id or correlation-id header is documented.
+versioning:
+  scheme: uri-path
+  current: v1
+  example: https://api.knownwell.com/ci/v1/clients
+  artifact: lifecycle/knownwell-lifecycle.yml
+error_envelope:
+  format: custom-json
+  rfc9457: false
+  shape:
+    error: Short error label
+    detail: Human-readable detail
+    status_code: Numeric HTTP status, repeated in the body
+  example: |
+    {
+      "error": "Validation error",
+      "detail": "API key is required",
+      "status_code": 401
+    }
+  validation_errors: 'FastAPI-style 422 responses use HTTPValidationError with a detail[] array
+    of ValidationError objects (loc, msg, type).'
+  artifact: errors/knownwell-problem-types.yml
+  docs: https://api.knownwell.com/docs#errors
+rate_limiting:
+  signaled: true
+  headers:
+  - X-RateLimit-Limit
+  - X-RateLimit-Remaining
+  - X-RateLimit-Reset
+  exceeded_status: 429
+  artifact: rate-limits/knownwell-rate-limits.yml
+  docs: https://api.knownwell.com/docs#rate-limits
+data_freshness:
+- Client scores are updated daily at 00:00 UTC
+- Historical data is available for up to 365 days
+- Portfolio health metrics are calculated in real-time
+best_practices:
+- Cache responses — client scores update daily, so cache for at least 1 hour
+- Use pagination — request only the data you need
+- Respect rate limits — monitor rate limit headers
+- Handle errors gracefully — provide fallback data when possible
+support:
+  docs: https://api.knownwell.com/docs#support
+  technical_support:
+    email: support@knownwell.com
+    sla: Response within 24 hours, business days
+  account_management:
+    email: help@knownwell.com
+  security:
+    email: infosec@knownwell.com
+  status: https://status.knownwell.com
+export:
+  csv: 'GET /v1/clients/export/csv (export_clients_csv_v1_clients_export_csv_get) returns a CSV
+    export of the client list.'
