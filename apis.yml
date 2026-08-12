@@ -207,6 +207,8 @@ apis:
   - type: Postman
     url: https://api.knownwell.com/static/knownwell-api-postman-collection.json
 common:
+- type: Overlay
+  url: overlays/knownwell-ci-overlay.yaml
 - type: AgenticAccess
   url: agentic-access/knownwell-agentic-access.yml
 - type: DomainSecurity
