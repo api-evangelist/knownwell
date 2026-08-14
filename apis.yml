@@ -9,20 +9,34 @@ description: 'Knownwell is an AI-powered commercial intelligence platform for B2
   growth opportunities across a portfolio, and track relationship health over time without
   manual data entry. Knownwell publishes a read-only public REST API at api.knownwell.com/ci/v1
   that exposes client scores, score history, portfolios, streams, topics, priorities, notes,
-  and key people, authenticated with an X-API-Key header. Knownwell was acquired by 2X to
+  key people, and the weekly Red/Amber/Green alignment reads a client team files by hand,
+  authenticated with an X-API-Key header. Platform pricing is published as a live per-client
+  volume calculator rather than named tiers, with a 30-day trial and no per-seat charge. Knownwell was acquired by 2X to
   form a human-agentic GTM services company.'
 accessModel:
-  pricing: unknown
+  pricing: published
+  pricing_model: volume-based per client entity per month; no per-seat charge
+  pricing_url: https://knownwell.com/pricing/
   onboarding: self-serve
-  trial: false
-  try_now: false
+  trial: true
+  trial_length_days: 30
+  trial_url: https://knownwell.com/free-trial/
+  try_now: true
+  try_now_note: 'The API reference embeds a live "Try it now" console on nine endpoints, but it
+    executes against production and requires a real customer API key — see
+    sandbox/knownwell-sandbox.yml. There is no sandbox and no test credentials.'
   public: false
-  label: Self-serve signup
-  confidence: medium
+  public_note: 'API keys are issued from Integrations > API Connector inside a paying customer
+    account; the OpenAPI, the reference and the Postman collection are public, the data is not.'
+  label: Self-serve signup with a 30-day trial
+  confidence: high
   source:
+  - https://knownwell.com/pricing/
+  - https://knownwell.com/free-trial/
+  - https://api.knownwell.com/ci/docs
   - authentication
-  generated: '2026-07-22'
-  method: derived
+  generated: '2026-08-13'
+  method: searched
 image: https://knownwell.com/wp-content/uploads/2023/08/favicon21.svg
 url: https://raw.githubusercontent.com/api-evangelist/knownwell/refs/heads/main/apis.yml
 x-type: company
@@ -31,7 +45,7 @@ x-backed-by:
 - a16z
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-19'
+modified: '2026-08-13'
 tags:
 - Company
 - Commercial Intelligence
@@ -44,6 +58,26 @@ tags:
 - CRM
 - Churn Risk
 apis:
+- aid: knownwell:knownwell-alignment-api
+  name: Knownwell alignment API
+  description: 'The alignment API from Knownwell — 2 operation(s) for alignment. Returns the
+    Red/Amber/Green alignment read a client team files by hand each week, alongside the
+    machine-computed Knownwell score, so the human call and the model can be reconciled.'
+  humanURL: https://api.knownwell.com/ci/docs#alignment
+  baseURL: https://api.knownwell.com/ci/v1
+  tags:
+  - alignment
+  properties:
+  - type: OpenAPI
+    url: openapi/knownwell-alignment-api-openapi.yml
+  - type: Documentation
+    url: https://api.knownwell.com/ci/docs
+  - type: APIReference
+    url: https://api.knownwell.com/ci/docs#alignment
+  - type: GettingStarted
+    url: https://api.knownwell.com/ci/docs#get-started
+  - type: Postman
+    url: https://api.knownwell.com/static/knownwell-api-postman-collection.json
 - aid: knownwell:knownwell-api-keys-api
   name: Knownwell api-keys API
   description: The api-keys API from Knownwell — 2 operation(s) for api-keys.
@@ -271,13 +305,20 @@ common:
   url: mcp/knownwell-mcp.yml
 - type: AgentSkill
   url: skills/_index.yml
+- type: Plans
+  url: plans/knownwell-plans-pricing.yml
+- type: Console
+  url: sandbox/knownwell-sandbox.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 x-enrichment:
-  date: '2026-07-19'
-  status: backfilled
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 5
   pass: local-v1
-  note: backfilled from .gitignore signal + verified work evidence
+  note: 'Re-harvested the live OpenAPI (27 ops, up from 25) — Knownwell shipped a new alignment
+    surface since the 2026-07-19 pass. Added plans (published rate formula), packages (honest
+    zero), sandbox/console, an alignment tag spec and an alignment agent skill.'
