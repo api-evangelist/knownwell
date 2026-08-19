@@ -1,6 +1,6 @@
-generated: '2026-07-19'
+generated: '2026-08-13'
 method: generated
-source: openapi/knownwell-ci-openapi-original.json + https://api.knownwell.com/docs
+source: openapi/_original/knownwell-ci-openapi-original.json + https://api.knownwell.com/ci/docs
 api: Knownwell API
 note: >-
   Knownwell publishes no AGENTS.md or provider-authored agent skills. These are generated from
@@ -44,3 +44,15 @@ skills:
   - get_stream_v1_clients__client_id__streams__stream_id__get
   - list_all_streams_v1_streams_get
   - get_client_notes_v1_clients__client_id__notes_get
+- file: knownwell-alignment-reconciliation.md
+  name: Reconcile Knownwell alignment reads against the score
+  description: Pull the weekly Red/Amber/Green alignment reads a client team files by hand,
+    compare each against the machine-computed Knownwell score, and surface the disagreements.
+  api: openapi/knownwell-alignment-api-openapi.yml
+  operations:
+  - list_client_alignments_v1_clients_alignment_get
+  - get_client_alignment_v1_clients__client_id__alignment_get
+  - get_clients_by_risk_v1_clients_by_risk__risk_level__get
+  - get_trending_clients_v1_clients_trending_get
+  - get_client_v1_clients__client_id__get
+  - get_client_priorities_v1_clients__client_id__priorities_get

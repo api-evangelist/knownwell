@@ -1,6 +1,6 @@
-generated: '2026-07-19'
+generated: '2026-08-13'
 method: searched
-source: https://api.knownwell.com/docs
+source: https://api.knownwell.com/ci/docs
 versioning:
   scheme: uri-path
   current: v1
@@ -41,4 +41,28 @@ corporate:
   source: https://knownwell.com/news/knownwell-2x-announcement/
 changelog:
   url: null
-  note: No dated API changelog or release-notes page was found; no ChangeLog pointer is wired.
+  note: 'No dated API changelog or release-notes page was found (re-checked 2026-08-13:
+    knownwell.com/changelog/ 404, the API reference contains no occurrence of "changelog" or
+    "release notes"). No ChangeLog pointer is wired.'
+observed_changes:
+  note: 'Because Knownwell publishes no changelog, API Evangelist records the diffs it observes
+    between harvests. This is our observation, not a provider claim.'
+  entries:
+  - observed: '2026-08-13'
+    previous_harvest: '2026-07-19'
+    kind: additive
+    breaking: false
+    version_unchanged: true
+    summary: 'The public API grew from 25 to 27 operations. A new "alignment" tag appeared with
+      GET /v1/clients/alignment (list_client_alignments_v1_clients_alignment_get) and GET
+      /v1/clients/{client_id}/alignment (get_client_alignment_v1_clients__client_id__alignment_get),
+      plus four new schemas (AlignmentRead, ClientAlignment, ClientAlignmentResponse,
+      AlignmentListResponse) and a matching Alignment section in the API reference.'
+    note: 'info.version stayed "v1" and the path prefix stayed /v1/, so a consumer pinned to the
+      spec has no version signal that the surface changed — the only way to notice is to
+      re-fetch https://api.knownwell.com/openapi.json and diff it.'
+    evidence:
+    - url: https://api.knownwell.com/openapi.json
+      http_status: 200
+    - url: https://api.knownwell.com/ci/docs#alignment
+      http_status: 200

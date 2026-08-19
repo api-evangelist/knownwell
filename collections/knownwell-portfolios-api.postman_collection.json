@@ -1,0 +1,378 @@
+{
+  "item": [
+    {
+      "id": "73499316-a75c-4e55-afe8-990a95a05252",
+      "name": "portfolios",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2fbfe97b-6afe-42c8-9c85-8339502b67db",
+          "name": "List Portfolios",
+          "request": {
+            "name": "List Portfolios",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "portfolios"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "include_system",
+                  "value": "true"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a4fb7ca2-5d5c-41b9-99dd-678b4042948e",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "portfolios"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_system",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"portfolios\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"customerId\": \"string\",\n      \"clientCount\": 7874,\n      \"color\": \"string\",\n      \"description\": \"string\",\n      \"userIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"isSystem\": false,\n      \"createdAt\": \"2003-02-24T12:50:13.024Z\",\n      \"updatedAt\": \"1951-02-13T23:23:02.653Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"customerId\": \"string\",\n      \"clientCount\": 29,\n      \"color\": \"string\",\n      \"description\": \"string\",\n      \"userIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"isSystem\": false,\n      \"createdAt\": \"1958-12-22T09:41:01.985Z\",\n      \"updatedAt\": \"2016-09-22T13:55:28.392Z\"\n    }\n  ],\n  \"total\": 2232,\n  \"customerId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7b8011c0-4359-4361-87fb-b9480c2a3904",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "portfolios"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_system",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c699b5f5-2d4b-4416-828d-e710d5550086",
+          "name": "Get Portfolio",
+          "request": {
+            "name": "Get Portfolio",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "portfolios",
+                ":portfolio_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "include_clients",
+                  "value": "true"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "portfolio_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "baf11129-80e1-45e8-b64b-6486b9c9c6fb",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "portfolios",
+                    ":portfolio_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_clients",
+                      "value": "true"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portfolio_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"customerId\": \"string\",\n  \"clientCount\": 26,\n  \"clients\": [\n    {\n      \"id\": \"string\",\n      \"customerId\": \"string\",\n      \"name\": \"string\",\n      \"score\": 4864,\n      \"scoreSource\": \"string\",\n      \"scoreChanges\": {\n        \"7day\": {\n          \"change\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"previousScore\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"percentage\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"30day\": {\n          \"change\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"previousScore\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"percentage\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"lastContactDate\": \"2022-11-07T01:19:56.512Z\",\n      \"lastUpdatedAt\": \"1970-02-14T12:42:54.464Z\",\n      \"hasInsufficientData\": false,\n      \"metadata\": {\n        \"accountOwner\": \"string\",\n        \"annualRevenue\": \"string\",\n        \"industry\": \"string\",\n        \"location\": \"string\",\n        \"active\": true,\n        \"accountStatus\": \"string\",\n        \"domain\": \"string\",\n        \"clientType\": \"string\",\n        \"revenueTTM\": 2271.1770948141007,\n        \"revenueF12M\": 3185.1507164529357\n      },\n      \"extraColumns\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"historicalData\": [\n        80,\n        679\n      ],\n      \"archived\": false\n    },\n    {\n      \"id\": \"string\",\n      \"customerId\": \"string\",\n      \"name\": \"string\",\n      \"score\": 1184,\n      \"scoreSource\": \"string\",\n      \"scoreChanges\": {\n        \"7day\": {\n          \"change\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"previousScore\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"percentage\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"30day\": {\n          \"change\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"previousScore\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"percentage\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"lastContactDate\": \"1998-08-07T20:02:30.444Z\",\n      \"lastUpdatedAt\": \"2001-09-17T04:32:56.336Z\",\n      \"hasInsufficientData\": false,\n      \"metadata\": {\n        \"accountOwner\": \"string\",\n        \"annualRevenue\": \"string\",\n        \"industry\": \"string\",\n        \"location\": \"string\",\n        \"active\": true,\n        \"accountStatus\": \"string\",\n        \"domain\": \"string\",\n        \"clientType\": \"string\",\n        \"revenueTTM\": 6976.1080716194365,\n        \"revenueF12M\": 8795.876385089869\n      },\n      \"extraColumns\": {\n        \"key_0\": \"string\"\n      },\n      \"historicalData\": [\n        7314,\n        8753\n      ],\n      \"archived\": true\n    }\n  ],\n  \"color\": \"string\",\n  \"description\": \"string\",\n  \"userIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"isSystem\": false,\n  \"createdAt\": \"2009-11-23T05:02:01.158Z\",\n  \"updatedAt\": \"1982-06-06T17:05:19.249Z\",\n  \"users\": [\n    {\n      \"id\": \"string\",\n      \"displayName\": \"string\",\n      \"email\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"displayName\": \"string\",\n      \"email\": \"string\"\n    }\n  ],\n  \"health\": {\n    \"score\": 1551,\n    \"breakdown\": {\n      \"key_0\": 4982,\n      \"key_1\": 2300\n    },\n    \"distribution\": {\n      \"key_0\": 5351,\n      \"key_1\": 8846,\n      \"key_2\": 7863,\n      \"key_3\": 4290,\n      \"key_4\": 7215\n    },\n    \"customerId\": \"string\",\n    \"chr2CutoverDate\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "16b1ea28-e58d-4ac9-815e-98229be96e2f",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "portfolios",
+                    ":portfolio_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_clients",
+                      "value": "true"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portfolio_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3ad2d76d-cb16-4c71-af8d-06c4e5d4200f",
+    "name": "Knownwell api-keys portfolios API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for accessing Knownwell client data and Knownwell scores",
+      "type": "text/plain"
+    }
+  }
+}

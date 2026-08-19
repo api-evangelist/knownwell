@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Knownwell api-keys topics API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "topics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Topics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/topics",
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List Topics"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

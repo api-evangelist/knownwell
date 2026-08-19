@@ -1,7 +1,7 @@
-generated: '2026-07-19'
+generated: '2026-08-13'
 method: searched
-source: https://api.knownwell.com/docs
-also_derived_from: openapi/knownwell-ci-openapi-original.json
+source: https://api.knownwell.com/ci/docs
+also_derived_from: openapi/_original/knownwell-ci-openapi-original.json
 api: Knownwell API
 base_url: https://api.knownwell.com/ci/v1
 style:
@@ -41,8 +41,15 @@ pagination:
     description: Number of items to skip before starting to collect the result set
   response_fields:
   - total
-  docs: https://api.knownwell.com/docs#pagination
+  docs: https://api.knownwell.com/ci/docs#pagination
   applies_to: List endpoints that return multiple items
+  inconsistencies:
+  - note: 'The documented default/max (100/500) is not universal. Verified against the spec on
+      2026-08-13: /v1/clients/alignment uses limit default 500, max 1000; /v1/clients/trending
+      uses default 20, max 100; /v1/clients/search and /v1/clients/{id}/priorities and
+      /v1/clients/{id}/notes use default 50, max 200. An agent must read each operation''s own
+      parameter schema rather than assume one paging rule.'
+    source: openapi/_original/knownwell-ci-openapi-original.json
 filtering:
   supported: true
   patterns:

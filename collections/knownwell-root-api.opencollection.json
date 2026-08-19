@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Knownwell api-keys root API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "root",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Root",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/"
+          },
+          "docs": "Root endpoint - redirects to documentation"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

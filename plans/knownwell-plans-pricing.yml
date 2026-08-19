@@ -1,0 +1,117 @@
+generated: '2026-08-13'
+method: searched
+source: https://knownwell.com/pricing/
+api: Knownwell Commercial Intelligence platform (the public API is included with the platform,
+  not sold or metered separately)
+currency: USD
+model: volume-based
+billing_unit: client entity measured per month
+billing_periods:
+- annual
+- monthly
+plan_count: 0
+plan_count_note: 'Knownwell publishes no named tiers. Instead it publishes a live pricing
+  calculator with the full rate formula in the page source, so the price for any volume is
+  publicly computable. plan_count is 0 because there are zero named plans, not because pricing
+  is undisclosed — see formula[] below, which is the published rate card.'
+plans: []
+positioning: 'Stop paying for seats. Start paying for value. One platform, with clear pricing
+  based on the number of clients you measure.'
+seat_policy:
+  per_seat: false
+  quote: 'Why don''t you charge per user? Services businesses succeed through collaboration. We
+    want you to onboard your entire firm: account managers, leadership, and delivery leads,
+    without worrying about license fees.'
+billing_unit_definition: 'A client entity is a distinct company or organization you are
+  measuring within Knownwell. Whether you have five contacts or 500 contacts at that company,
+  it counts as one client entity.'
+formula:
+  source: 'Inline calculator script published at https://knownwell.com/pricing/ (verbatim
+    constants; the arithmetic below is the page''s own calculate() function).'
+  constants:
+    BASE_FACTOR: 500
+    CONNECTOR_FACTOR: 250
+    CONNECTOR_EXPONENT: 0.35
+    ANNUAL_DISCOUNT_FACTOR: 0.7
+    FREE_CONNECTORS: 2
+  monthly_total_annual_billing: '500 * sqrt(clients) + (paid_connectors > 0 ? 250 * (clients *
+    paid_connectors) ^ 0.35 : 0)'
+  monthly_total_monthly_billing: the annual-billing figure divided by 0.7
+  annual_discount: Save 30% paying annually
+  volume_range:
+    minimum_clients: 25
+    maximum_clients: 1000
+    steps: 25, then 50 through 1000 in increments of 50
+    above_maximum: 'For pricing for more than 1000 clients, please book time with our team.'
+worked_examples:
+  note: 'Computed from the published formula above with zero paid connectors, annual billing.
+    Recorded as illustration of the published rate card, not as quoted prices.'
+  examples:
+  - clients: 25
+    monthly_total_usd: 2500.00
+    per_client_per_month_usd: 100.00
+  - clients: 100
+    monthly_total_usd: 5000.00
+    per_client_per_month_usd: 50.00
+  - clients: 500
+    monthly_total_usd: 11180.34
+    per_client_per_month_usd: 22.36
+  - clients: 1000
+    monthly_total_usd: 15811.39
+    per_client_per_month_usd: 15.81
+included_capabilities:
+  commercial_intelligence:
+  - Health Scoring — objective retention risk and expansion scores
+  - Public Info Synthesis — daily monitoring of news and market shifts
+  - Growth Intelligence — identify cross-sell and upsell opportunities
+  commercial_operations:
+  - Firm-Wide Insights — analytics on resource utilization and impact
+  - Team Collaboration — shared workspaces and intelligent notifications
+  - Executive Reporting — high-level dashboards for leadership
+  connectivity:
+  - Standard Comms — Gmail or Microsoft 365 email integration
+  - CRM Integration — Salesforce or HubSpot sync
+  - Flexible Add-ons — premium video or chat connectors
+connectors:
+  free_included: 2
+  free_choices:
+    email:
+    - Microsoft 365
+    - Google Workspace
+    crm:
+    - HubSpot
+    - Salesforce
+  paid_addons:
+  - Microsoft Teams
+  - Slack
+  - Gong
+  - Fathom
+  - Fireflies
+  - Dialpad
+  - Granola
+  - Google Meet
+  paid_addon_pricing: 250 * (clients * paid_connector_count) ^ 0.35 added to the monthly total
+    (annual billing)
+  public_api:
+    included: true
+    note: 'The public REST API is listed in the site''s CONNECTORS menu as "Public API" and
+      links to https://api.knownwell.com/ci/docs. It carries no separate line item, price, or
+      metered quota on the pricing page; API access is governed by the platform rate limits in
+      rate-limits/knownwell-rate-limits.yml.'
+trial:
+  available: true
+  length_days: 30
+  cta: START A 30-DAY TRIAL / Start Your Free Trial
+  url: https://knownwell.com/free-trial/
+  http_status: 200
+enterprise:
+  contact_sales_above: 1000 clients
+  url: https://knownwell.com/demo/
+evidence:
+- url: https://knownwell.com/pricing/
+  http_status: 200
+  fetched: '2026-08-13'
+  note: Rate constants read verbatim from the page's own inline calculator script.
+- url: https://knownwell.com/free-trial/
+  http_status: 200
+  fetched: '2026-08-13'

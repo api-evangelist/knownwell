@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Knownwell api-keys streams API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "streams",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Streams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/streams",
+            "params": [
+              {
+                "name": "include_inactive",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List All Streams"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

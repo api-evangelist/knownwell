@@ -1,6 +1,7 @@
-generated: '2026-07-19'
+generated: '2026-08-13'
 method: derived
-source: openapi/knownwell-ci-openapi-original.json
+source: openapi/_original/knownwell-ci-openapi-original.json (re-harvested 2026-08-13; the
+  alignment surface is new since the 2026-07-19 pass)
 api: Knownwell API
 description: 'Entity-relationship graph derived from the Knownwell OpenAPI component schemas
   and the id-reference fields they carry. The domain centres on a Customer (tenant) whose
@@ -54,6 +55,9 @@ entities:
   - type: has_many
     target: Topic
     via: topics
+  - type: has_one
+    target: AlignmentRead
+    via: clientId
 - name: Portfolio
   schemas:
   - PortfolioResponse
@@ -156,6 +160,42 @@ entities:
   - type: belongs_to
     target: Portfolio
     via: userIds
+- name: AlignmentRead
+  schemas:
+  - AlignmentRead
+  - ClientAlignment
+  - ClientAlignmentResponse
+  key: null
+  key_note: 'An alignment read has no id of its own; it is keyed by (clientId, week).'
+  tenant_field: customerId
+  fields:
+  - value
+  - week
+  - updatedAt
+  - updatedBy
+  carrier_fields:
+  - clientId
+  - clientName
+  - externalClientId
+  - knownwellScore
+  - scoreSource
+  operations:
+  - list_client_alignments_v1_clients_alignment_get
+  - get_client_alignment_v1_clients__client_id__alignment_get
+  note: 'The Red/Amber/Green read a human on the customer team files against a client each
+    week, shown in the Alignment column of the Commercial Intelligence report. A read carries
+    forward until a newer one is filed, so resolving a week returns the most recent read on or
+    before it; clients with no read return alignment: null. This is the one HUMAN-authored
+    signal in the model — every other score is machine-derived — and externalClientId is the
+    join key back into the customer''s own systems (taken from the imported "Client ID"
+    column in extraColumns).'
+  relationships:
+  - type: belongs_to
+    target: Client
+    via: clientId
+  - type: belongs_to
+    target: Customer
+    via: customerId
 value_objects:
 - name: ScoreChange
   fields_note: A single delta in a client or stream score

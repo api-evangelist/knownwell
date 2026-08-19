@@ -1,7 +1,7 @@
-generated: '2026-07-19'
+generated: '2026-08-13'
 method: searched
-source: https://api.knownwell.com/docs#errors
-also_derived_from: openapi/knownwell-ci-openapi-original.json
+source: https://api.knownwell.com/ci/docs#errors
+also_derived_from: openapi/_original/knownwell-ci-openapi-original.json
 format: custom-json
 rfc9457: false
 description: 'Knownwell uses conventional HTTP response codes to indicate the success or
@@ -61,7 +61,11 @@ problems:
   - get_clients_by_risk_v1_clients_by_risk__risk_level__get
   - search_clients_v1_clients_search_get
   - list_clients_v1_clients_get
-  note: 22 of 25 operations declare a 422 response in the OpenAPI.
+  note: '22 of 27 operations declare a 422 response in the OpenAPI (re-counted 2026-08-13
+    against the re-harvested spec, which added the two alignment operations — both declare
+    422). The five that do not are list_topics_v1_topics_get, health_check_health_get,
+    root__get, documentation_docs_get and status_page_status_get — the endpoints that take no
+    parameters.'
 - status: 429
   title: Too Many Requests
   detail: Rate limit exceeded

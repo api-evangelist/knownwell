@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Knownwell api-keys portfolios API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "portfolios",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Portfolios",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/portfolios",
+            "params": [
+              {
+                "name": "include_system",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List Portfolios"
+        },
+        {
+          "info": {
+            "name": "Get Portfolio",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/portfolios/:portfolio_id",
+            "params": [
+              {
+                "name": "portfolio_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "include_clients",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get Portfolio"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

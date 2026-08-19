@@ -1,0 +1,211 @@
+{
+  "item": [
+    {
+      "id": "c3753392-bf1b-47ad-ad38-f8902bc9bfdf",
+      "name": "streams",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "33b03bec-b960-42c9-be18-0454cc47fa9b",
+          "name": "List All Streams",
+          "request": {
+            "name": "List All Streams",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "streams"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "include_inactive",
+                  "value": "false"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b1ec5d60-2e06-4925-b92e-18d1bfb7af2c",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_inactive",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"streams\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"customerId\": \"string\",\n      \"score\": 3027.676396298639,\n      \"parentClientId\": \"string\",\n      \"parentClientName\": \"string\",\n      \"streamState\": \"string\",\n      \"goals\": \"string\",\n      \"hasInsufficientData\": true,\n      \"historicalData\": [\n        8746,\n        7450\n      ],\n      \"scoreChanges\": {\n        \"7day\": {\n          \"change\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"previousScore\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"percentage\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"30day\": {\n          \"change\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"previousScore\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"percentage\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"customerId\": \"string\",\n      \"score\": 3751.5720170854815,\n      \"parentClientId\": \"string\",\n      \"parentClientName\": \"string\",\n      \"streamState\": \"string\",\n      \"goals\": \"string\",\n      \"hasInsufficientData\": true,\n      \"historicalData\": [\n        2554,\n        1655\n      ],\n      \"scoreChanges\": {\n        \"7day\": {\n          \"change\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"previousScore\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"percentage\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"30day\": {\n          \"change\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"previousScore\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"percentage\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    }\n  ],\n  \"total\": 9178,\n  \"customerId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "25a1a57a-ca11-41f8-b670-2af02caf9183",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_inactive",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4ee67294-68ba-47c7-8a2b-36b69cdd0e0f",
+    "name": "Knownwell api-keys streams API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for accessing Knownwell client data and Knownwell scores",
+      "type": "text/plain"
+    }
+  }
+}

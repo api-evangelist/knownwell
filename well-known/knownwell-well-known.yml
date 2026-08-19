@@ -1,9 +1,10 @@
-generated: '2026-07-19'
+generated: '2026-08-13'
 method: probed
-source: live HTTP probes of the Knownwell API, marketing, and app hosts
-note: 'Knownwell publishes no /.well-known/ discovery surface. Every probed document returned
-  404. Recorded as an honest negative result; no WellKnown/SecurityTxt pointer is wired in
-  apis.yml because there is nothing to point at.'
+source: live HTTP probes of the Knownwell API, marketing, app, trust and status hosts
+note: 'Knownwell publishes no /.well-known/ discovery surface. Every probed document on every
+  host Knownwell itself operates returned 404. Recorded as an honest negative result; NO
+  WellKnown and NO SecurityTxt pointer is wired in apis.yml because there is nothing to point
+  at. Re-probed 2026-08-13 (first probed 2026-07-19) — unchanged.'
 hosts:
 - host: https://api.knownwell.com
   documents:
@@ -13,9 +14,15 @@ hosts:
     status: 404
   - path: /.well-known/oauth-authorization-server
     status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
   - path: /.well-known/api-catalog
     status: 404
   - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
     status: 404
 - host: https://knownwell.com
   documents:
@@ -25,10 +32,18 @@ hosts:
     status: 404
   - path: /.well-known/oauth-authorization-server
     status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
   - path: /.well-known/api-catalog
     status: 404
   - path: /.well-known/ai-plugin.json
     status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+    note: WordPress 404 template, text/html
+  - path: /.well-known/agent.json
+    status: 404
+    note: WordPress 404 template, text/html
 - host: https://ci.knownwell.com
   documents:
   - path: /.well-known/security.txt
@@ -41,5 +56,31 @@ hosts:
     status: 404
   - path: /.well-known/ai-plugin.json
     status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+third_party_hosts:
+  note: 'These two hosts answer 200 to EVERY /.well-known/* path with an HTML single-page-app
+    shell. They are vendor-operated catch-alls, not Knownwell documents, and are recorded here
+    so a later round does not mistake the 200 for a discovery hit.'
+  hosts:
+  - host: https://trustcenter.knownwell.com
+    vendor: Vanta
+    paths_probed:
+    - /.well-known/agent-card.json
+    - /.well-known/agent.json
+    status: 200
+    content_type: text/html
+    verdict: false-positive — SPA catch-all, body is HTML, not a JSON AgentCard
+  - host: https://status.knownwell.com
+    vendor: UptimeRobot (redirects to stats.uptimerobot.com)
+    paths_probed:
+    - /.well-known/agent-card.json
+    - /.well-known/agent.json
+    status: 200
+    content_type: text/html
+    verdict: false-positive — SPA catch-all, body is HTML, not a JSON AgentCard
 related:
 - 'llms.txt IS published at https://knownwell.com/llms.txt (200) — saved verbatim to llms/knownwell-llms.txt'
+- 'https://api.knownwell.com/llms.txt returns 404; the llms.txt lives only on the marketing host.'

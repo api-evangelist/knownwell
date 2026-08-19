@@ -1,0 +1,56 @@
+generated: '2026-08-13'
+method: searched
+source: https://api.knownwell.com/ci/docs
+api: Knownwell API
+sandbox_environment:
+  available: false
+  note: 'Knownwell publishes NO sandbox or test environment, no test-vs-live key separation, no
+    test-mode key prefix, no seeded fixtures, no time simulation, and no magic test identifiers.
+    The docs contain no occurrence of "sandbox", "test mode", or "test key". API keys are
+    issued per customer_id against production data and are read-only by construction
+    (APIKeyScope enum has exactly one value, read_only).'
+  searched_terms:
+  - sandbox
+  - test mode
+  - test key
+  - test data
+  - fixtures
+console:
+  available: true
+  kind: in-docs interactive console
+  name: Try it now
+  url: https://api.knownwell.com/ci/docs
+  http_status: 200
+  description: 'Every documented endpoint carries an embedded "Try it now" panel: the reader
+    pastes their own API key (held for the browser session only), fills the path/query
+    parameters, presses Send Request, and the rendered response comes back inline. It executes
+    against PRODUCTION with the reader''s real key — it is a console, not a sandbox.'
+  runs_against: production
+  requires: a real X-API-Key issued from Integrations > API Connector at https://ci.knownwell.com/
+  endpoints_with_console:
+  - list_clients_v1_clients_get
+  - get_client_v1_clients__client_id__get
+  - get_portfolio_health_v1_clients_portfolio_health_get
+  - list_all_streams_v1_streams_get
+  - list_client_streams_v1_clients__client_id__streams_get
+  - get_stream_v1_clients__client_id__streams__stream_id__get
+  - list_portfolios_v1_portfolios_get
+  - get_portfolio_v1_portfolios__portfolio_id__get
+  - list_topics_v1_topics_get
+  console_count: 9
+safety:
+  read_only: true
+  note: 'Because the entire public API surface is GET and every key is read_only, running the
+    console against production cannot mutate customer data. That is why Knownwell can ship a
+    live console without a sandbox — but it also means there is no way to exercise the API
+    without a paying account.'
+trial:
+  note: 'The nearest thing to a no-cost evaluation path is the 30-day platform trial at
+    https://knownwell.com/free-trial/ — see plans/knownwell-plans-pricing.yml.'
+credentials_published: none
+evidence:
+- url: https://api.knownwell.com/ci/docs
+  http_status: 200
+  fetched: '2026-08-13'
+  observed: 9 "Try it now" panels with an API Key field, parameter inputs, and a Send Request
+    button; zero occurrences of sandbox/test-mode language.

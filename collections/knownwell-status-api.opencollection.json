@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Knownwell api-keys status API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "status",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Status Page",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/status"
+          },
+          "docs": "Redirect to external status page."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

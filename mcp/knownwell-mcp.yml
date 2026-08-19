@@ -1,14 +1,12 @@
-generated: '2026-07-19'
+generated: '2026-08-13'
 method: derived
-source: openapi/knownwell-ci-openapi-original.json
+source: openapi/_original/knownwell-ci-openapi-original.json
 status: candidate
-description: >-
-  Knownwell publishes no hosted or remote MCP server (no MCP reference in the developer
-  docs, no /.well-known/ai-plugin.json, no npm or registry listing). This is a candidate
-  server derived one-to-one from the published OpenAPI operations, offered as a starting
-  point. Every tool below maps to a real operationId in the harvested spec. Because the
-  Knownwell API is strictly read-only, the entire tool surface is read-only and safe to
-  expose to an agent under a single X-API-Key.
+description: Knownwell publishes no hosted or remote MCP server (no MCP reference in the developer docs,
+  no /.well-known/ai-plugin.json, no npm or registry listing). This is a candidate server derived one-to-one
+  from the published OpenAPI operations, offered as a starting point. Every tool below maps to a real
+  operationId in the harvested spec. Because the Knownwell API is strictly read-only, the entire tool
+  surface is read-only and safe to expose to an agent under a single X-API-Key.
 server:
   name: knownwell
   transport: http
@@ -29,8 +27,7 @@ tools:
   description: Search clients by name.
   source_operation: openapi/knownwell-ci-openapi-original.json#search_clients_v1_clients_search_get
 - name: get_clients_by_risk
-  description: 'List clients at a given risk level: high_risk, medium_risk, low_risk, or
-    on_track.'
+  description: 'List clients at a given risk level: high_risk, medium_risk, low_risk, or on_track.'
   source_operation: openapi/knownwell-ci-openapi-original.json#get_clients_by_risk_v1_clients_by_risk__risk_level__get
 - name: get_trending_clients
   description: List clients whose Knownwell score is improving or declining.
@@ -71,6 +68,14 @@ tools:
 - name: get_stream
   description: Get one stream on a client, with score, state, and goals.
   source_operation: openapi/knownwell-ci-openapi-original.json#get_stream_v1_clients__client_id__streams__stream_id__get
+- name: list_client_alignments
+  description: 'List the current Red/Amber/Green alignment read filed on every client, with the
+    Knownwell score and your own imported client id. Optional week resolves reads as of a given
+    Monday.'
+  source_operation: openapi/knownwell-alignment-api-openapi.yml#list_client_alignments_v1_clients_alignment_get
+- name: get_client_alignment
+  description: Get the current Red/Amber/Green alignment read for one client.
+  source_operation: openapi/knownwell-alignment-api-openapi.yml#get_client_alignment_v1_clients__client_id__alignment_get
 - name: list_topics
   description: List the fifteen scoring topics and their categories.
   source_operation: openapi/knownwell-ci-openapi-original.json#list_topics_v1_topics_get
@@ -87,3 +92,16 @@ conventions:
   pagination: limit/offset (default 100, max 500) — see conventions/knownwell-conventions.yml
   rate_limits: 100/min, 5,000/hour, 50,000/day — see rate-limits/knownwell-rate-limits.yml
   errors: '{error, detail, status_code} — see errors/knownwell-problem-types.yml'
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: api-key
+  verified: derived
+  tools: 21
+  checked: '2026-08-13'
+  source: 'Re-probed 2026-08-13: https://api.knownwell.com/mcp returns 404; the MCP registry
+    (registry.modelcontextprotocol.io) returns 0 servers for "knownwell"; npm returns 0
+    packages; the API reference contains no occurrence of "MCP". Nobody ships a Knownwell MCP
+    server — the tools above are our derived candidate, and mode: none says so.'

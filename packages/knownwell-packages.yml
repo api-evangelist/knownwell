@@ -1,0 +1,66 @@
+generated: '2026-08-13'
+method: searched
+source: 'Registry queries against npm, PyPI, RubyGems and crates.io, plus the Knownwell API
+  reference at https://api.knownwell.com/ci/docs and the GitHub organisation search.'
+package_count: 0
+packages: []
+note: 'Knownwell publishes NO first-party client libraries in any public package registry, and
+  the API reference offers none. The documented integration path is raw HTTP: a cURL example
+  plus a downloadable Postman collection ("2. Import to Postman (Recommended)"). No SDKs
+  pointer is wired in apis.yml because there is no SDK to point at — recording the honest zero
+  here so later rounds do not re-search it.'
+searched:
+- registry: npm
+  query: https://registry.npmjs.org/-/v1/search?text=knownwell&size=20
+  http_status: 200
+  results: 0
+- registry: pypi
+  query: https://pypi.org/pypi/knownwell/json
+  http_status: 404
+  results: 0
+- registry: pypi
+  query: https://pypi.org/pypi/knownwell-api/json
+  http_status: 404
+  results: 0
+- registry: rubygems
+  query: https://rubygems.org/api/v1/gems/knownwell.json
+  http_status: 404
+  results: 0
+- registry: crates.io
+  query: https://crates.io/api/v1/crates?q=knownwell
+  http_status: 200
+  results: 0
+- registry: mcp-registry
+  query: https://registry.modelcontextprotocol.io/v0/servers?search=knownwell
+  http_status: 200
+  results: 0
+distribution_alternatives:
+- kind: postman-collection
+  name: Knownwell API Postman Collection
+  url: https://api.knownwell.com/static/knownwell-api-postman-collection.json
+  http_status: 200
+  version: null
+  published: null
+  note: 'A static, unversioned JSON file served from the API host. The collection carries no
+    version or published date, so a consumer cannot tell which build of the API it matches —
+    recorded as null rather than guessed. Mirrored in this repo under collections/.'
+  official: true
+github:
+  candidate_org: https://github.com/knownwell-ai
+  http_status: 200
+  org_name: Knownwell
+  org_location: United States of America
+  created_at: '2024-01-10'
+  public_repos: 2
+  repos:
+  - name: knownwell-ai/.github
+    note: 'Empty org meta repo; no profile/README.md (raw fetch 404).'
+  - name: knownwell-ai/target-bigquery
+    fork: true
+    note: 'A fork of the Meltano Singer target for BigQuery — internal data plumbing, not a
+      Knownwell client library.'
+  ownership_verdict: unverified
+  ownership_note: 'The org is named "Knownwell" and was created in January 2024, but it
+    publishes no profile README, no website field, and knownwell.com links to it from nowhere.
+    Without a link the company itself publishes, ownership cannot be proven, so NO
+    GitHubOrganization pointer is wired in apis.yml. Recorded here as a lead for a later round.'
