@@ -66,6 +66,8 @@ apis:
   humanURL: https://api.knownwell.com/ci/docs#alignment
   baseURL: https://api.knownwell.com/ci/v1
   tags:
+  - Alignment
+  tags_raw:
   - alignment
   properties:
   - type: OpenAPI
@@ -84,6 +86,8 @@ apis:
   humanURL: https://api.knownwell.com/docs
   baseURL: https://api.knownwell.com/ci/v1
   tags:
+  - APIKeys
+  tags_raw:
   - api-keys
   properties:
   - type: OpenAPI
@@ -102,6 +106,8 @@ apis:
   humanURL: https://api.knownwell.com/docs
   baseURL: https://api.knownwell.com/ci/v1
   tags:
+  - Clients
+  tags_raw:
   - clients
   properties:
   - type: OpenAPI
@@ -120,6 +126,8 @@ apis:
   humanURL: https://api.knownwell.com/docs
   baseURL: https://api.knownwell.com/ci/v1
   tags:
+  - Documentation
+  tags_raw:
   - documentation
   properties:
   - type: OpenAPI
@@ -138,6 +146,8 @@ apis:
   humanURL: https://api.knownwell.com/docs
   baseURL: https://api.knownwell.com/ci/v1
   tags:
+  - Health
+  tags_raw:
   - health
   properties:
   - type: OpenAPI
@@ -156,6 +166,8 @@ apis:
   humanURL: https://api.knownwell.com/docs
   baseURL: https://api.knownwell.com/ci/v1
   tags:
+  - Portfolio
+  tags_raw:
   - portfolios
   properties:
   - type: OpenAPI
@@ -174,6 +186,8 @@ apis:
   humanURL: https://api.knownwell.com/docs
   baseURL: https://api.knownwell.com/ci/v1
   tags:
+  - Root
+  tags_raw:
   - root
   properties:
   - type: OpenAPI
@@ -192,6 +206,8 @@ apis:
   humanURL: https://api.knownwell.com/docs
   baseURL: https://api.knownwell.com/ci/v1
   tags:
+  - Status
+  tags_raw:
   - status
   properties:
   - type: OpenAPI
@@ -210,6 +226,8 @@ apis:
   humanURL: https://api.knownwell.com/docs
   baseURL: https://api.knownwell.com/ci/v1
   tags:
+  - Streams
+  tags_raw:
   - streams
   properties:
   - type: OpenAPI
@@ -228,6 +246,8 @@ apis:
   humanURL: https://api.knownwell.com/docs
   baseURL: https://api.knownwell.com/ci/v1
   tags:
+  - Topics
+  tags_raw:
   - topics
   properties:
   - type: OpenAPI
