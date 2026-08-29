@@ -13,6 +13,18 @@ description: 'Knownwell is an AI-powered commercial intelligence platform for B2
   authenticated with an X-API-Key header. Platform pricing is published as a live per-client
   volume calculator rather than named tiers, with a 30-day trial and no per-seat charge. Knownwell was acquired by 2X to
   form a human-agentic GTM services company.'
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: published
   pricing_model: volume-based per client entity per month; no per-seat charge
