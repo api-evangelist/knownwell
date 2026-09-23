@@ -69,9 +69,8 @@ tools:
   description: Get one stream on a client, with score, state, and goals.
   source_operation: openapi/knownwell-ci-openapi-original.json#get_stream_v1_clients__client_id__streams__stream_id__get
 - name: list_client_alignments
-  description: 'List the current Red/Amber/Green alignment read filed on every client, with the
-    Knownwell score and your own imported client id. Optional week resolves reads as of a given
-    Monday.'
+  description: List the current Red/Amber/Green alignment read filed on every client, with the Knownwell
+    score and your own imported client id. Optional week resolves reads as of a given Monday.
   source_operation: openapi/knownwell-alignment-api-openapi.yml#list_client_alignments_v1_clients_alignment_get
 - name: get_client_alignment
   description: Get the current Red/Amber/Green alignment read for one client.
@@ -94,14 +93,7 @@ conventions:
   errors: '{error, detail, status_code} — see errors/knownwell-problem-types.yml'
 deployment:
   mode: none
-  endpoint: null
-  install: null
-  package: null
-  auth: api-key
   verified: derived
-  tools: 21
-  checked: '2026-08-13'
-  source: 'Re-probed 2026-08-13: https://api.knownwell.com/mcp returns 404; the MCP registry
-    (registry.modelcontextprotocol.io) returns 0 servers for "knownwell"; npm returns 0
-    packages; the API reference contains no occurrence of "MCP". Nobody ships a Knownwell MCP
-    server — the tools above are our derived candidate, and mode: none says so.'
+  tools: 19
+  checked: '2026-08-12'
+  source: catalog MCP census

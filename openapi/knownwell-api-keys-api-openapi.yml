@@ -1,15 +1,15 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Knownwell api-keys API
+  title: Knownwell API Keys API
   description: API for accessing Knownwell client data and Knownwell scores
   version: v1
 tags:
-- name: api-keys
+- name: API Keys
 paths:
   /v1/api-keys:
     post:
       tags:
-      - api-keys
+      - API Keys
       summary: Create Api Key
       description: Create a new API key.
       operationId: create_api_key_v1_api_keys_post
@@ -43,7 +43,7 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
     get:
       tags:
-      - api-keys
+      - API Keys
       summary: List Api Keys
       description: List all API keys.
       operationId: list_api_keys_v1_api_keys_get
@@ -83,7 +83,7 @@ paths:
   /v1/api-keys/{key_id}:
     delete:
       tags:
-      - api-keys
+      - API Keys
       summary: Revoke Api Key
       description: Revoke an API key.
       operationId: revoke_api_key_v1_api_keys__key_id__delete
@@ -113,6 +113,15 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     APIKeyCreate:
       properties:
         customer_id:
@@ -145,38 +154,6 @@ components:
       - name
       title: APIKeyCreate
       description: Request model for creating an API key.
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    APIKeyScope:
-      type: string
-      enum:
-      - read_only
-      title: APIKeyScope
-      description: API key access scope - ALL KEYS ARE READ-ONLY
     APIKeyResponse:
       properties:
         id:
@@ -233,15 +210,38 @@ components:
       - last_used_at
       title: APIKeyResponse
       description: Response model for API key.
-    HTTPValidationError:
+    ValidationError:
       properties:
-        detail:
+        loc:
           items:
-            $ref: '#/components/schemas/ValidationError'
+            anyOf:
+            - type: string
+            - type: integer
           type: array
-          title: Detail
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
       type: object
-      title: HTTPValidationError
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    APIKeyScope:
+      type: string
+      enum:
+      - read_only
+      title: APIKeyScope
+      description: API key access scope - ALL KEYS ARE READ-ONLY
   securitySchemes:
     APIKeyHeader:
       type: apiKey

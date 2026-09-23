@@ -1,17 +1,10 @@
 {
   "provider": "knownwell",
   "sources": [
-    "knownwell-api-keys-api-openapi.yml",
-    "knownwell-clients-api-openapi.yml",
-    "knownwell-documentation-api-openapi.yml",
-    "knownwell-health-api-openapi.yml",
-    "knownwell-portfolios-api-openapi.yml",
-    "knownwell-root-api-openapi.yml",
-    "knownwell-status-api-openapi.yml",
-    "knownwell-streams-api-openapi.yml",
-    "knownwell-topics-api-openapi.yml"
+    "_original/knownwell-ci-openapi-original.json"
   ],
   "outputs": [
+    "knownwell-alignment-api-openapi.yml",
     "knownwell-api-keys-api-openapi.yml",
     "knownwell-clients-api-openapi.yml",
     "knownwell-documentation-api-openapi.yml",
@@ -25,6 +18,31 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "knownwell-ci-openapi-original.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "knownwell-ci-openapi-original.json: declared missing tag: alignment",
+    "knownwell-ci-openapi-original.json: declared missing tag: api-keys",
+    "knownwell-ci-openapi-original.json: declared missing tag: clients",
+    "knownwell-ci-openapi-original.json: declared missing tag: documentation",
+    "knownwell-ci-openapi-original.json: declared missing tag: health",
+    "knownwell-ci-openapi-original.json: declared missing tag: portfolios",
+    "knownwell-ci-openapi-original.json: declared missing tag: root",
+    "knownwell-ci-openapi-original.json: declared missing tag: status",
+    "knownwell-ci-openapi-original.json: declared missing tag: streams",
+    "knownwell-ci-openapi-original.json: declared missing tag: topics",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "knownwell-alignment-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "knownwell-api-keys-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "knownwell-clients-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "knownwell-documentation-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "knownwell-health-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "knownwell-portfolios-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "knownwell-root-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "knownwell-status-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "knownwell-streams-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "knownwell-topics-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

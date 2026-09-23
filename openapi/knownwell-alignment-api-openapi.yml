@@ -1,15 +1,15 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Knownwell alignment API
+  title: Knownwell Alignment API
   description: API for accessing Knownwell client data and Knownwell scores
   version: v1
 tags:
-- name: alignment
+- name: Alignment
 paths:
   /v1/clients/alignment:
     get:
       tags:
-      - alignment
+      - Alignment
       summary: List Client Alignments
       description: 'The current Red/Amber/Green alignment read for every client, as shown
 
@@ -26,11 +26,9 @@ paths:
           - type: string
             pattern: ^\d{4}-\d{2}-\d{2}$
           - type: 'null'
-          description: Resolve reads as of this week (YYYY-MM-DD, typically a Monday). Reads filed for
-            later weeks are ignored. Defaults to the latest read.
+          description: Resolve reads as of this week (YYYY-MM-DD, typically a Monday). Reads filed for later weeks are ignored. Defaults to the latest read.
           title: Week
-        description: Resolve reads as of this week (YYYY-MM-DD, typically a Monday). Reads filed for later
-          weeks are ignored. Defaults to the latest read.
+        description: Resolve reads as of this week (YYYY-MM-DD, typically a Monday). Reads filed for later weeks are ignored. Defaults to the latest read.
       - name: include_archived
         in: query
         required: false
@@ -71,7 +69,7 @@ paths:
   /v1/clients/{client_id}/alignment:
     get:
       tags:
-      - alignment
+      - Alignment
       summary: Get Client Alignment
       description: The current Red/Amber/Green alignment read for a single client.
       operationId: get_client_alignment_v1_clients__client_id__alignment_get
@@ -92,11 +90,9 @@ paths:
           - type: string
             pattern: ^\d{4}-\d{2}-\d{2}$
           - type: 'null'
-          description: Resolve reads as of this week (YYYY-MM-DD, typically a Monday). Reads filed for
-            later weeks are ignored. Defaults to the latest read.
+          description: Resolve reads as of this week (YYYY-MM-DD, typically a Monday). Reads filed for later weeks are ignored. Defaults to the latest read.
           title: Week
-        description: Resolve reads as of this week (YYYY-MM-DD, typically a Monday). Reads filed for later
-          weeks are ignored. Defaults to the latest read.
+        description: Resolve reads as of this week (YYYY-MM-DD, typically a Monday). Reads filed for later weeks are ignored. Defaults to the latest read.
       responses:
         '200':
           description: Successful Response
@@ -112,32 +108,51 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    AlignmentListResponse:
+    HTTPValidationError:
       properties:
-        clients:
+        detail:
           items:
-            $ref: '#/components/schemas/ClientAlignment'
+            $ref: '#/components/schemas/ValidationError'
           type: array
-          title: Clients
-        total:
-          type: integer
-          title: Total
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ClientAlignmentResponse:
+      properties:
+        clientId:
+          type: string
+          title: Clientid
+        clientName:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Clientname
+        externalClientId:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Externalclientid
+          description: Customer-assigned client ID (extraColumns['Client ID']), when present
+        alignment:
+          anyOf:
+          - $ref: '#/components/schemas/AlignmentRead'
+          - type: 'null'
+          description: Current alignment read; null when the client has no read on or before the requested week
         week:
           anyOf:
           - type: string
           - type: 'null'
           title: Week
-          description: As-of week the reads were resolved against; null when the latest reads were returned
+          description: As-of week the read was resolved against; null when the latest read was returned
         customerId:
           type: string
           title: Customerid
       type: object
       required:
-      - clients
-      - total
+      - clientId
       - customerId
-      title: AlignmentListResponse
-      description: Response model for the client alignment list.
+      title: ClientAlignmentResponse
+      description: Alignment read for a single client.
     AlignmentRead:
       properties:
         value:
@@ -167,6 +182,32 @@ components:
       - week
       title: AlignmentRead
       description: A Red/Amber/Green alignment read filed on a client.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     ClientAlignment:
       properties:
         clientId:
@@ -198,85 +239,38 @@ components:
           anyOf:
           - $ref: '#/components/schemas/AlignmentRead'
           - type: 'null'
-          description: Current alignment read; null when the client has no read on or before the requested
-            week
+          description: Current alignment read; null when the client has no read on or before the requested week
       type: object
       required:
       - clientId
       title: ClientAlignment
       description: Per-client entry in the alignment list.
-    ClientAlignmentResponse:
+    AlignmentListResponse:
       properties:
-        clientId:
-          type: string
-          title: Clientid
-        clientName:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Clientname
-        externalClientId:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Externalclientid
-          description: Customer-assigned client ID (extraColumns['Client ID']), when present
-        alignment:
-          anyOf:
-          - $ref: '#/components/schemas/AlignmentRead'
-          - type: 'null'
-          description: Current alignment read; null when the client has no read on or before the requested
-            week
+        clients:
+          items:
+            $ref: '#/components/schemas/ClientAlignment'
+          type: array
+          title: Clients
+        total:
+          type: integer
+          title: Total
         week:
           anyOf:
           - type: string
           - type: 'null'
           title: Week
-          description: As-of week the read was resolved against; null when the latest read was returned
+          description: As-of week the reads were resolved against; null when the latest reads were returned
         customerId:
           type: string
           title: Customerid
       type: object
       required:
-      - clientId
+      - clients
+      - total
       - customerId
-      title: ClientAlignmentResponse
-      description: Alignment read for a single client.
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
+      title: AlignmentListResponse
+      description: Response model for the client alignment list.
   securitySchemes:
     APIKeyHeader:
       type: apiKey

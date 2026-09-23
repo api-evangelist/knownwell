@@ -1,15 +1,15 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Knownwell api-keys status API
+  title: Knownwell Status API
   description: API for accessing Knownwell client data and Knownwell scores
   version: v1
 tags:
-- name: status
+- name: Status
 paths:
   /status:
     get:
       tags:
-      - status
+      - Status
       summary: Status Page
       description: Redirect to external status page.
       operationId: status_page_status_get
