@@ -113,15 +113,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     APIKeyCreate:
       properties:
         customer_id:
@@ -210,6 +201,21 @@ components:
       - last_used_at
       title: APIKeyResponse
       description: Response model for API key.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    APIKeyScope:
+      type: string
+      enum:
+      - read_only
+      title: APIKeyScope
+      description: API key access scope - ALL KEYS ARE READ-ONLY
     ValidationError:
       properties:
         loc:
@@ -236,12 +242,6 @@ components:
       - msg
       - type
       title: ValidationError
-    APIKeyScope:
-      type: string
-      enum:
-      - read_only
-      title: APIKeyScope
-      description: API key access scope - ALL KEYS ARE READ-ONLY
   securitySchemes:
     APIKeyHeader:
       type: apiKey

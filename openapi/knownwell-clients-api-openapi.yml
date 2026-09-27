@@ -543,52 +543,6 @@ components:
       - declining
       - stable
       title: TrendDirection
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    ScoreChanges:
-      properties:
-        7day:
-          anyOf:
-          - $ref: '#/components/schemas/ScoreChange'
-          - type: 'null'
-          description: 7-day change
-        30day:
-          anyOf:
-          - $ref: '#/components/schemas/ScoreChange'
-          - type: 'null'
-          description: 30-day change
-      type: object
-      title: ScoreChanges
-      description: Score changes over different time periods.
-    ScoreChange:
-      properties:
-        change:
-          type: number
-          title: Change
-          description: Absolute change in score
-        percentage:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Percentage
-          description: Percentage change
-        previousScore:
-          type: number
-          title: Previousscore
-          description: Score at start of period
-      type: object
-      required:
-      - change
-      - previousScore
-      title: ScoreChange
-      description: Score change over a time period.
     ClientMetadata:
       properties:
         accountOwner:
@@ -664,296 +618,6 @@ components:
       - customerId
       title: ClientListResponse
       description: Response model for list of clients.
-    ClientResponse:
-      properties:
-        id:
-          type: string
-          title: Id
-        customerId:
-          type: string
-          title: Customerid
-        name:
-          type: string
-          title: Name
-        score:
-          type: integer
-          title: Score
-        scoreSource:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Scoresource
-          description: 'Score data source: chr1 or chr2'
-        scoreChanges:
-          anyOf:
-          - $ref: '#/components/schemas/ScoreChanges'
-          - type: 'null'
-          description: Score changes over time
-        lastContactDate:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Lastcontactdate
-        lastUpdatedAt:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Lastupdatedat
-        hasInsufficientData:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Hasinsufficientdata
-        metadata:
-          anyOf:
-          - $ref: '#/components/schemas/ClientMetadata'
-          - type: 'null'
-        extraColumns:
-          anyOf:
-          - additionalProperties:
-              type: string
-            type: object
-          - type: 'null'
-          title: Extracolumns
-          description: Custom column values
-        historicalData:
-          anyOf:
-          - items:
-              type: integer
-            type: array
-          - type: 'null'
-          title: Historicaldata
-        archived:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Archived
-      type: object
-      required:
-      - id
-      - customerId
-      - name
-      - score
-      title: ClientResponse
-      description: Response model for client data.
-    PortfolioHealthResponse:
-      properties:
-        score:
-          type: integer
-          title: Score
-        breakdown:
-          additionalProperties:
-            type: integer
-          type: object
-          title: Breakdown
-        distribution:
-          additionalProperties:
-            type: integer
-          type: object
-          title: Distribution
-        customerId:
-          type: string
-          title: Customerid
-        chr2CutoverDate:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Chr2Cutoverdate
-          description: CHR 2.0 cutover date if enabled
-      type: object
-      required:
-      - score
-      - breakdown
-      - distribution
-      - customerId
-      title: PortfolioHealthResponse
-      description: Portfolio health metrics.
-    StreamResponse:
-      properties:
-        id:
-          type: string
-          title: Id
-        name:
-          type: string
-          title: Name
-        customerId:
-          type: string
-          title: Customerid
-        parentClientId:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Parentclientid
-        parentClientName:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Parentclientname
-        score:
-          type: number
-          title: Score
-        streamState:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Streamstate
-          description: 'Stream status: pending, active, or inactive'
-        goals:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Goals
-          description: Stream goals/objectives
-        hasInsufficientData:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Hasinsufficientdata
-        historicalData:
-          anyOf:
-          - items:
-              type: integer
-            type: array
-          - type: 'null'
-          title: Historicaldata
-        scoreChanges:
-          anyOf:
-          - $ref: '#/components/schemas/ScoreChanges'
-          - type: 'null'
-          description: Score changes over time
-      type: object
-      required:
-      - id
-      - name
-      - customerId
-      - score
-      title: StreamResponse
-      description: Response model for a stream (sub-project within a client)
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    RiskLevel:
-      type: string
-      enum:
-      - high_risk
-      - medium_risk
-      - low_risk
-      - on_track
-      title: RiskLevel
-    ClientDetailResponse:
-      properties:
-        id:
-          type: string
-          title: Id
-        customerId:
-          type: string
-          title: Customerid
-        name:
-          type: string
-          title: Name
-        score:
-          type: integer
-          title: Score
-        scoreSource:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Scoresource
-          description: 'Score data source: chr1 or chr2'
-        scoreChanges:
-          anyOf:
-          - $ref: '#/components/schemas/ScoreChanges'
-          - type: 'null'
-          description: Score changes over time
-        lastContactDate:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Lastcontactdate
-        lastUpdatedAt:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Lastupdatedat
-        hasInsufficientData:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Hasinsufficientdata
-        metadata:
-          anyOf:
-          - $ref: '#/components/schemas/ClientMetadata'
-          - type: 'null'
-        extraColumns:
-          anyOf:
-          - additionalProperties:
-              type: string
-            type: object
-          - type: 'null'
-          title: Extracolumns
-          description: Custom column values
-        historicalData:
-          anyOf:
-          - items:
-              type: integer
-            type: array
-          - type: 'null'
-          title: Historicaldata
-        archived:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Archived
-        spotlightSummary:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Spotlightsummary
-          description: AI-generated markdown summary of client status for the current week
-        topics:
-          anyOf:
-          - items:
-              additionalProperties: true
-              type: object
-            type: array
-          - type: 'null'
-          title: Topics
-          description: Topic and category scores organized by category
-      type: object
-      required:
-      - id
-      - customerId
-      - name
-      - score
-      title: ClientDetailResponse
-      description: Detailed client response with additional data.
     StreamDetailResponse:
       properties:
         id:
@@ -1046,6 +710,130 @@ components:
       - score
       title: StreamDetailResponse
       description: Detailed stream response with insights from Cortex analytics.
+    StreamResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+        name:
+          type: string
+          title: Name
+        customerId:
+          type: string
+          title: Customerid
+        parentClientId:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Parentclientid
+        parentClientName:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Parentclientname
+        score:
+          type: number
+          title: Score
+        streamState:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Streamstate
+          description: 'Stream status: pending, active, or inactive'
+        goals:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Goals
+          description: Stream goals/objectives
+        hasInsufficientData:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Hasinsufficientdata
+        historicalData:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Historicaldata
+        scoreChanges:
+          anyOf:
+          - $ref: '#/components/schemas/ScoreChanges'
+          - type: 'null'
+          description: Score changes over time
+      type: object
+      required:
+      - id
+      - name
+      - customerId
+      - score
+      title: StreamResponse
+      description: Response model for a stream (sub-project within a client)
+    ScoreChange:
+      properties:
+        change:
+          type: number
+          title: Change
+          description: Absolute change in score
+        percentage:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Percentage
+          description: Percentage change
+        previousScore:
+          type: number
+          title: Previousscore
+          description: Score at start of period
+      type: object
+      required:
+      - change
+      - previousScore
+      title: ScoreChange
+      description: Score change over a time period.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    PortfolioHealthResponse:
+      properties:
+        score:
+          type: integer
+          title: Score
+        breakdown:
+          additionalProperties:
+            type: integer
+          type: object
+          title: Breakdown
+        distribution:
+          additionalProperties:
+            type: integer
+          type: object
+          title: Distribution
+        customerId:
+          type: string
+          title: Customerid
+        chr2CutoverDate:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Chr2Cutoverdate
+          description: CHR 2.0 cutover date if enabled
+      type: object
+      required:
+      - score
+      - breakdown
+      - distribution
+      - customerId
+      title: PortfolioHealthResponse
+      description: Portfolio health metrics.
     StreamListResponse:
       properties:
         streams:
@@ -1070,6 +858,218 @@ components:
       - customerId
       title: StreamListResponse
       description: Response model for list of streams.
+    RiskLevel:
+      type: string
+      enum:
+      - high_risk
+      - medium_risk
+      - low_risk
+      - on_track
+      title: RiskLevel
+    ClientResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+        customerId:
+          type: string
+          title: Customerid
+        name:
+          type: string
+          title: Name
+        score:
+          type: integer
+          title: Score
+        scoreSource:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Scoresource
+          description: 'Score data source: chr1 or chr2'
+        scoreChanges:
+          anyOf:
+          - $ref: '#/components/schemas/ScoreChanges'
+          - type: 'null'
+          description: Score changes over time
+        lastContactDate:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Lastcontactdate
+        lastUpdatedAt:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Lastupdatedat
+        hasInsufficientData:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Hasinsufficientdata
+        metadata:
+          anyOf:
+          - $ref: '#/components/schemas/ClientMetadata'
+          - type: 'null'
+        extraColumns:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Extracolumns
+          description: Custom column values
+        historicalData:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Historicaldata
+        archived:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Archived
+      type: object
+      required:
+      - id
+      - customerId
+      - name
+      - score
+      title: ClientResponse
+      description: Response model for client data.
+    ScoreChanges:
+      properties:
+        7day:
+          anyOf:
+          - $ref: '#/components/schemas/ScoreChange'
+          - type: 'null'
+          description: 7-day change
+        30day:
+          anyOf:
+          - $ref: '#/components/schemas/ScoreChange'
+          - type: 'null'
+          description: 30-day change
+      type: object
+      title: ScoreChanges
+      description: Score changes over different time periods.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    ClientDetailResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+        customerId:
+          type: string
+          title: Customerid
+        name:
+          type: string
+          title: Name
+        score:
+          type: integer
+          title: Score
+        scoreSource:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Scoresource
+          description: 'Score data source: chr1 or chr2'
+        scoreChanges:
+          anyOf:
+          - $ref: '#/components/schemas/ScoreChanges'
+          - type: 'null'
+          description: Score changes over time
+        lastContactDate:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Lastcontactdate
+        lastUpdatedAt:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Lastupdatedat
+        hasInsufficientData:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Hasinsufficientdata
+        metadata:
+          anyOf:
+          - $ref: '#/components/schemas/ClientMetadata'
+          - type: 'null'
+        extraColumns:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Extracolumns
+          description: Custom column values
+        historicalData:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Historicaldata
+        archived:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Archived
+        spotlightSummary:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Spotlightsummary
+          description: AI-generated markdown summary of client status for the current week
+        topics:
+          anyOf:
+          - items:
+              additionalProperties: true
+              type: object
+            type: array
+          - type: 'null'
+          title: Topics
+          description: Topic and category scores organized by category
+      type: object
+      required:
+      - id
+      - customerId
+      - name
+      - score
+      title: ClientDetailResponse
+      description: Detailed client response with additional data.
   securitySchemes:
     APIKeyHeader:
       type: apiKey
