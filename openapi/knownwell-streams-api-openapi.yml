@@ -54,6 +54,32 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     ScoreChange:
       properties:
         change:
@@ -85,67 +111,6 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
-    ScoreChanges:
-      properties:
-        7day:
-          anyOf:
-          - $ref: '#/components/schemas/ScoreChange'
-          - type: 'null'
-          description: 7-day change
-        30day:
-          anyOf:
-          - $ref: '#/components/schemas/ScoreChange'
-          - type: 'null'
-          description: 30-day change
-      type: object
-      title: ScoreChanges
-      description: Score changes over different time periods.
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    AllStreamsListResponse:
-      properties:
-        streams:
-          items:
-            $ref: '#/components/schemas/StreamResponse'
-          type: array
-          title: Streams
-        total:
-          type: integer
-          title: Total
-        customerId:
-          type: string
-          title: Customerid
-      type: object
-      required:
-      - streams
-      - total
-      - customerId
-      title: AllStreamsListResponse
-      description: Response model for listing all streams across all clients.
     StreamResponse:
       properties:
         id:
@@ -207,6 +172,41 @@ components:
       - score
       title: StreamResponse
       description: Response model for a stream (sub-project within a client)
+    AllStreamsListResponse:
+      properties:
+        streams:
+          items:
+            $ref: '#/components/schemas/StreamResponse'
+          type: array
+          title: Streams
+        total:
+          type: integer
+          title: Total
+        customerId:
+          type: string
+          title: Customerid
+      type: object
+      required:
+      - streams
+      - total
+      - customerId
+      title: AllStreamsListResponse
+      description: Response model for listing all streams across all clients.
+    ScoreChanges:
+      properties:
+        7day:
+          anyOf:
+          - $ref: '#/components/schemas/ScoreChange'
+          - type: 'null'
+          description: 7-day change
+        30day:
+          anyOf:
+          - $ref: '#/components/schemas/ScoreChange'
+          - type: 'null'
+          description: 30-day change
+      type: object
+      title: ScoreChanges
+      description: Score changes over different time periods.
   securitySchemes:
     APIKeyHeader:
       type: apiKey
