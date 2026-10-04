@@ -562,37 +562,6 @@ components:
       - msg
       - type
       title: ValidationError
-    ScoreChange:
-      properties:
-        change:
-          type: number
-          title: Change
-          description: Absolute change in score
-        percentage:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Percentage
-          description: Percentage change
-        previousScore:
-          type: number
-          title: Previousscore
-          description: Score at start of period
-      type: object
-      required:
-      - change
-      - previousScore
-      title: ScoreChange
-      description: Score change over a time period.
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     StreamDetailResponse:
       properties:
         id:
@@ -685,76 +654,6 @@ components:
       - score
       title: StreamDetailResponse
       description: Detailed stream response with insights from Cortex analytics.
-    ClientMetadata:
-      properties:
-        accountOwner:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Accountowner
-        annualRevenue:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Annualrevenue
-        industry:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Industry
-        location:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Location
-        active:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Active
-        accountStatus:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Accountstatus
-        domain:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Domain
-        clientType:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Clienttype
-        revenueTTM:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Revenuettm
-        revenueF12M:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Revenuef12M
-      type: object
-      title: ClientMetadata
-      description: Client metadata.
-    RiskLevel:
-      type: string
-      enum:
-      - high_risk
-      - medium_risk
-      - low_risk
-      - on_track
-      title: RiskLevel
-    TrendDirection:
-      type: string
-      enum:
-      - improving
-      - declining
-      - stable
-      title: TrendDirection
     StreamResponse:
       properties:
         id:
@@ -816,45 +715,6 @@ components:
       - score
       title: StreamResponse
       description: Response model for a stream (sub-project within a client)
-    StreamListResponse:
-      properties:
-        streams:
-          items:
-            $ref: '#/components/schemas/StreamResponse'
-          type: array
-          title: Streams
-        total:
-          type: integer
-          title: Total
-        parentClientId:
-          type: string
-          title: Parentclientid
-        customerId:
-          type: string
-          title: Customerid
-      type: object
-      required:
-      - streams
-      - total
-      - parentClientId
-      - customerId
-      title: StreamListResponse
-      description: Response model for list of streams.
-    ScoreChanges:
-      properties:
-        7day:
-          anyOf:
-          - $ref: '#/components/schemas/ScoreChange'
-          - type: 'null'
-          description: 7-day change
-        30day:
-          anyOf:
-          - $ref: '#/components/schemas/ScoreChange'
-          - type: 'null'
-          description: 30-day change
-      type: object
-      title: ScoreChanges
-      description: Score changes over different time periods.
     PortfolioHealthResponse:
       properties:
         score:
@@ -887,26 +747,104 @@ components:
       - customerId
       title: PortfolioHealthResponse
       description: Portfolio health metrics.
-    ClientListResponse:
+    ClientResponse:
       properties:
-        clients:
+        id:
+          type: string
+          title: Id
+        customerId:
+          type: string
+          title: Customerid
+        name:
+          type: string
+          title: Name
+        score:
+          type: integer
+          title: Score
+        scoreSource:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Scoresource
+          description: 'Score data source: chr1 or chr2'
+        scoreChanges:
+          anyOf:
+          - $ref: '#/components/schemas/ScoreChanges'
+          - type: 'null'
+          description: Score changes over time
+        lastContactDate:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Lastcontactdate
+        lastUpdatedAt:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Lastupdatedat
+        hasInsufficientData:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Hasinsufficientdata
+        metadata:
+          anyOf:
+          - $ref: '#/components/schemas/ClientMetadata'
+          - type: 'null'
+        extraColumns:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Extracolumns
+          description: Custom column values
+        historicalData:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Historicaldata
+        archived:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Archived
+      type: object
+      required:
+      - id
+      - customerId
+      - name
+      - score
+      title: ClientResponse
+      description: Response model for client data.
+    StreamListResponse:
+      properties:
+        streams:
           items:
-            $ref: '#/components/schemas/ClientResponse'
+            $ref: '#/components/schemas/StreamResponse'
           type: array
-          title: Clients
+          title: Streams
         total:
           type: integer
           title: Total
+        parentClientId:
+          type: string
+          title: Parentclientid
         customerId:
           type: string
           title: Customerid
       type: object
       required:
-      - clients
+      - streams
       - total
+      - parentClientId
       - customerId
-      title: ClientListResponse
-      description: Response model for list of clients.
+      title: StreamListResponse
+      description: Response model for list of streams.
     ClientDetailResponse:
       properties:
         id:
@@ -996,80 +934,142 @@ components:
       - score
       title: ClientDetailResponse
       description: Detailed client response with additional data.
-    ClientResponse:
+    ClientMetadata:
       properties:
-        id:
-          type: string
-          title: Id
+        accountOwner:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Accountowner
+        annualRevenue:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Annualrevenue
+        industry:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Industry
+        location:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Location
+        active:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Active
+        accountStatus:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Accountstatus
+        domain:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Domain
+        clientType:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Clienttype
+        revenueTTM:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Revenuettm
+        revenueF12M:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Revenuef12M
+      type: object
+      title: ClientMetadata
+      description: Client metadata.
+    RiskLevel:
+      type: string
+      enum:
+      - high_risk
+      - medium_risk
+      - low_risk
+      - on_track
+      title: RiskLevel
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ScoreChanges:
+      properties:
+        7day:
+          anyOf:
+          - $ref: '#/components/schemas/ScoreChange'
+          - type: 'null'
+          description: 7-day change
+        30day:
+          anyOf:
+          - $ref: '#/components/schemas/ScoreChange'
+          - type: 'null'
+          description: 30-day change
+      type: object
+      title: ScoreChanges
+      description: Score changes over different time periods.
+    ScoreChange:
+      properties:
+        change:
+          type: number
+          title: Change
+          description: Absolute change in score
+        percentage:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Percentage
+          description: Percentage change
+        previousScore:
+          type: number
+          title: Previousscore
+          description: Score at start of period
+      type: object
+      required:
+      - change
+      - previousScore
+      title: ScoreChange
+      description: Score change over a time period.
+    ClientListResponse:
+      properties:
+        clients:
+          items:
+            $ref: '#/components/schemas/ClientResponse'
+          type: array
+          title: Clients
+        total:
+          type: integer
+          title: Total
         customerId:
           type: string
           title: Customerid
-        name:
-          type: string
-          title: Name
-        score:
-          type: integer
-          title: Score
-        scoreSource:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Scoresource
-          description: 'Score data source: chr1 or chr2'
-        scoreChanges:
-          anyOf:
-          - $ref: '#/components/schemas/ScoreChanges'
-          - type: 'null'
-          description: Score changes over time
-        lastContactDate:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Lastcontactdate
-        lastUpdatedAt:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Lastupdatedat
-        hasInsufficientData:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Hasinsufficientdata
-        metadata:
-          anyOf:
-          - $ref: '#/components/schemas/ClientMetadata'
-          - type: 'null'
-        extraColumns:
-          anyOf:
-          - additionalProperties:
-              type: string
-            type: object
-          - type: 'null'
-          title: Extracolumns
-          description: Custom column values
-        historicalData:
-          anyOf:
-          - items:
-              type: integer
-            type: array
-          - type: 'null'
-          title: Historicaldata
-        archived:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Archived
       type: object
       required:
-      - id
+      - clients
+      - total
       - customerId
-      - name
-      - score
-      title: ClientResponse
-      description: Response model for client data.
+      title: ClientListResponse
+      description: Response model for list of clients.
+    TrendDirection:
+      type: string
+      enum:
+      - improving
+      - declining
+      - stable
+      title: TrendDirection
   securitySchemes:
     APIKeyHeader:
       type: apiKey

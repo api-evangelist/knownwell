@@ -80,37 +80,26 @@ components:
       - msg
       - type
       title: ValidationError
-    ScoreChange:
+    AllStreamsListResponse:
       properties:
-        change:
-          type: number
-          title: Change
-          description: Absolute change in score
-        percentage:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Percentage
-          description: Percentage change
-        previousScore:
-          type: number
-          title: Previousscore
-          description: Score at start of period
+        streams:
+          items:
+            $ref: '#/components/schemas/StreamResponse'
+          type: array
+          title: Streams
+        total:
+          type: integer
+          title: Total
+        customerId:
+          type: string
+          title: Customerid
       type: object
       required:
-      - change
-      - previousScore
-      title: ScoreChange
-      description: Score change over a time period.
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
+      - streams
+      - total
+      - customerId
+      title: AllStreamsListResponse
+      description: Response model for listing all streams across all clients.
     StreamResponse:
       properties:
         id:
@@ -172,26 +161,15 @@ components:
       - score
       title: StreamResponse
       description: Response model for a stream (sub-project within a client)
-    AllStreamsListResponse:
+    HTTPValidationError:
       properties:
-        streams:
+        detail:
           items:
-            $ref: '#/components/schemas/StreamResponse'
+            $ref: '#/components/schemas/ValidationError'
           type: array
-          title: Streams
-        total:
-          type: integer
-          title: Total
-        customerId:
-          type: string
-          title: Customerid
+          title: Detail
       type: object
-      required:
-      - streams
-      - total
-      - customerId
-      title: AllStreamsListResponse
-      description: Response model for listing all streams across all clients.
+      title: HTTPValidationError
     ScoreChanges:
       properties:
         7day:
@@ -207,6 +185,28 @@ components:
       type: object
       title: ScoreChanges
       description: Score changes over different time periods.
+    ScoreChange:
+      properties:
+        change:
+          type: number
+          title: Change
+          description: Absolute change in score
+        percentage:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Percentage
+          description: Percentage change
+        previousScore:
+          type: number
+          title: Previousscore
+          description: Score at start of period
+      type: object
+      required:
+      - change
+      - previousScore
+      title: ScoreChange
+      description: Score change over a time period.
   securitySchemes:
     APIKeyHeader:
       type: apiKey
