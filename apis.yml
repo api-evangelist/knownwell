@@ -57,7 +57,7 @@ x-backed-by:
 - a16z
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-08-13'
+modified: '2026-10-06'
 tags:
 - Company
 - Commercial Intelligence
@@ -273,6 +273,8 @@ apis:
   - type: Postman
     url: https://api.knownwell.com/static/knownwell-api-postman-collection.json
 common:
+- url: https://knownwell.com/feed/
+  type: BlogRSS
 - type: Overlay
   url: overlays/knownwell-ci-overlay.yaml
 - type: AgenticAccess
